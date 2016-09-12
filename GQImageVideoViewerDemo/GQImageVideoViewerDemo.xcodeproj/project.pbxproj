@@ -1,0 +1,672 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B68DE0A51D86ACEE00FD8B84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE0A41D86ACEE00FD8B84 /* main.m */; };
+		B68DE0A81D86ACEE00FD8B84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE0A71D86ACEE00FD8B84 /* AppDelegate.m */; };
+		B68DE0B31D86ACEE00FD8B84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B68DE0B21D86ACEE00FD8B84 /* Assets.xcassets */; };
+		B68DE0B61D86ACEE00FD8B84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B68DE0B41D86ACEE00FD8B84 /* LaunchScreen.storyboard */; };
+		B68DE0C11D86ACEE00FD8B84 /* GQImageVideoViewerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE0C01D86ACEE00FD8B84 /* GQImageVideoViewerDemoTests.m */; };
+		B68DE0CC1D86ACEE00FD8B84 /* GQImageVideoViewerDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE0CB1D86ACEE00FD8B84 /* GQImageVideoViewerDemoUITests.m */; };
+		B68DE0F71D86AD0900FD8B84 /* GQBaseImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE0DC1D86AD0900FD8B84 /* GQBaseImageView.m */; };
+		B68DE0F81D86AD0900FD8B84 /* GQBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE0DE1D86AD0900FD8B84 /* GQBaseTableView.m */; };
+		B68DE0F91D86AD0900FD8B84 /* GQBaseVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE0E01D86AD0900FD8B84 /* GQBaseVideoView.m */; };
+		B68DE0FA1D86AD0900FD8B84 /* NSData+GQCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE0E41D86AD0900FD8B84 /* NSData+GQCategory.m */; };
+		B68DE0FB1D86AD0900FD8B84 /* GQHttpRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE0E61D86AD0900FD8B84 /* GQHttpRequestManager.m */; };
+		B68DE0FC1D86AD0900FD8B84 /* GQGobalPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE0E91D86AD0900FD8B84 /* GQGobalPaths.m */; };
+		B68DE0FD1D86AD0900FD8B84 /* GQImageCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE0EB1D86AD0900FD8B84 /* GQImageCacheManager.m */; };
+		B68DE0FE1D86AD0900FD8B84 /* GQImageDataDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE0ED1D86AD0900FD8B84 /* GQImageDataDownload.m */; };
+		B68DE0FF1D86AD0900FD8B84 /* GQURLOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE0EF1D86AD0900FD8B84 /* GQURLOperation.m */; };
+		B68DE1001D86AD0900FD8B84 /* GQImageVideoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE0F11D86AD0900FD8B84 /* GQImageVideoScrollView.m */; };
+		B68DE1011D86AD0900FD8B84 /* GQImageVideoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE0F31D86AD0900FD8B84 /* GQImageVideoTableView.m */; };
+		B68DE1021D86AD0900FD8B84 /* GQImageVideoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE0F51D86AD0900FD8B84 /* GQImageVideoViewer.m */; };
+		B68DE1051D86AD4700FD8B84 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B68DE1041D86AD4700FD8B84 /* DemoViewController.m */; };
+		B68DE1111D86AD8200FD8B84 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B68DE1071D86AD8200FD8B84 /* 1.jpg */; };
+		B68DE1121D86AD8200FD8B84 /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B68DE1081D86AD8200FD8B84 /* 10.jpg */; };
+		B68DE1131D86AD8200FD8B84 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B68DE1091D86AD8200FD8B84 /* 2.jpg */; };
+		B68DE1141D86AD8200FD8B84 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B68DE10A1D86AD8200FD8B84 /* 3.jpg */; };
+		B68DE1151D86AD8200FD8B84 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B68DE10B1D86AD8200FD8B84 /* 4.jpg */; };
+		B68DE1161D86AD8200FD8B84 /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B68DE10C1D86AD8200FD8B84 /* 5.jpg */; };
+		B68DE1171D86AD8200FD8B84 /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B68DE10D1D86AD8200FD8B84 /* 6.jpg */; };
+		B68DE1181D86AD8200FD8B84 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B68DE10E1D86AD8200FD8B84 /* 7.jpg */; };
+		B68DE1191D86AD8200FD8B84 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B68DE10F1D86AD8200FD8B84 /* 8.jpg */; };
+		B68DE11A1D86AD8200FD8B84 /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B68DE1101D86AD8200FD8B84 /* 9.jpg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B68DE0BD1D86ACEE00FD8B84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B68DE0981D86ACEE00FD8B84 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B68DE09F1D86ACEE00FD8B84;
+			remoteInfo = GQImageVideoViewerDemo;
+		};
+		B68DE0C81D86ACEE00FD8B84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B68DE0981D86ACEE00FD8B84 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B68DE09F1D86ACEE00FD8B84;
+			remoteInfo = GQImageVideoViewerDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B68DE0A01D86ACEE00FD8B84 /* GQImageVideoViewerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GQImageVideoViewerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B68DE0A41D86ACEE00FD8B84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B68DE0A61D86ACEE00FD8B84 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B68DE0A71D86ACEE00FD8B84 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B68DE0B21D86ACEE00FD8B84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B68DE0B51D86ACEE00FD8B84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B68DE0B71D86ACEE00FD8B84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B68DE0BC1D86ACEE00FD8B84 /* GQImageVideoViewerDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GQImageVideoViewerDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B68DE0C01D86ACEE00FD8B84 /* GQImageVideoViewerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQImageVideoViewerDemoTests.m; sourceTree = "<group>"; };
+		B68DE0C21D86ACEE00FD8B84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B68DE0C71D86ACEE00FD8B84 /* GQImageVideoViewerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GQImageVideoViewerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B68DE0CB1D86ACEE00FD8B84 /* GQImageVideoViewerDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQImageVideoViewerDemoUITests.m; sourceTree = "<group>"; };
+		B68DE0CD1D86ACEE00FD8B84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B68DE0DB1D86AD0900FD8B84 /* GQBaseImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQBaseImageView.h; sourceTree = "<group>"; };
+		B68DE0DC1D86AD0900FD8B84 /* GQBaseImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQBaseImageView.m; sourceTree = "<group>"; };
+		B68DE0DD1D86AD0900FD8B84 /* GQBaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQBaseTableView.h; sourceTree = "<group>"; };
+		B68DE0DE1D86AD0900FD8B84 /* GQBaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQBaseTableView.m; sourceTree = "<group>"; };
+		B68DE0DF1D86AD0900FD8B84 /* GQBaseVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQBaseVideoView.h; sourceTree = "<group>"; };
+		B68DE0E01D86AD0900FD8B84 /* GQBaseVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQBaseVideoView.m; sourceTree = "<group>"; };
+		B68DE0E31D86AD0900FD8B84 /* NSData+GQCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GQCategory.h"; sourceTree = "<group>"; };
+		B68DE0E41D86AD0900FD8B84 /* NSData+GQCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+GQCategory.m"; sourceTree = "<group>"; };
+		B68DE0E51D86AD0900FD8B84 /* GQHttpRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQHttpRequestManager.h; sourceTree = "<group>"; };
+		B68DE0E61D86AD0900FD8B84 /* GQHttpRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQHttpRequestManager.m; sourceTree = "<group>"; };
+		B68DE0E81D86AD0900FD8B84 /* GQGobalPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQGobalPaths.h; sourceTree = "<group>"; };
+		B68DE0E91D86AD0900FD8B84 /* GQGobalPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQGobalPaths.m; sourceTree = "<group>"; };
+		B68DE0EA1D86AD0900FD8B84 /* GQImageCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQImageCacheManager.h; sourceTree = "<group>"; };
+		B68DE0EB1D86AD0900FD8B84 /* GQImageCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQImageCacheManager.m; sourceTree = "<group>"; };
+		B68DE0EC1D86AD0900FD8B84 /* GQImageDataDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQImageDataDownload.h; sourceTree = "<group>"; };
+		B68DE0ED1D86AD0900FD8B84 /* GQImageDataDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQImageDataDownload.m; sourceTree = "<group>"; };
+		B68DE0EE1D86AD0900FD8B84 /* GQURLOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQURLOperation.h; sourceTree = "<group>"; };
+		B68DE0EF1D86AD0900FD8B84 /* GQURLOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQURLOperation.m; sourceTree = "<group>"; };
+		B68DE0F01D86AD0900FD8B84 /* GQImageVideoScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQImageVideoScrollView.h; sourceTree = "<group>"; };
+		B68DE0F11D86AD0900FD8B84 /* GQImageVideoScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQImageVideoScrollView.m; sourceTree = "<group>"; };
+		B68DE0F21D86AD0900FD8B84 /* GQImageVideoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQImageVideoTableView.h; sourceTree = "<group>"; };
+		B68DE0F31D86AD0900FD8B84 /* GQImageVideoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQImageVideoTableView.m; sourceTree = "<group>"; };
+		B68DE0F41D86AD0900FD8B84 /* GQImageVideoViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQImageVideoViewer.h; sourceTree = "<group>"; };
+		B68DE0F51D86AD0900FD8B84 /* GQImageVideoViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQImageVideoViewer.m; sourceTree = "<group>"; };
+		B68DE0F61D86AD0900FD8B84 /* GQImageVideoViewerConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQImageVideoViewerConst.h; sourceTree = "<group>"; };
+		B68DE1031D86AD4700FD8B84 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		B68DE1041D86AD4700FD8B84 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
+		B68DE1071D86AD8200FD8B84 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		B68DE1081D86AD8200FD8B84 /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
+		B68DE1091D86AD8200FD8B84 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		B68DE10A1D86AD8200FD8B84 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
+		B68DE10B1D86AD8200FD8B84 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
+		B68DE10C1D86AD8200FD8B84 /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
+		B68DE10D1D86AD8200FD8B84 /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
+		B68DE10E1D86AD8200FD8B84 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
+		B68DE10F1D86AD8200FD8B84 /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
+		B68DE1101D86AD8200FD8B84 /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B68DE09D1D86ACEE00FD8B84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B68DE0B91D86ACEE00FD8B84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B68DE0C41D86ACEE00FD8B84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B68DE0971D86ACEE00FD8B84 = {
+			isa = PBXGroup;
+			children = (
+				B68DE0A21D86ACEE00FD8B84 /* GQImageVideoViewerDemo */,
+				B68DE0BF1D86ACEE00FD8B84 /* GQImageVideoViewerDemoTests */,
+				B68DE0CA1D86ACEE00FD8B84 /* GQImageVideoViewerDemoUITests */,
+				B68DE0A11D86ACEE00FD8B84 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B68DE0A11D86ACEE00FD8B84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B68DE0A01D86ACEE00FD8B84 /* GQImageVideoViewerDemo.app */,
+				B68DE0BC1D86ACEE00FD8B84 /* GQImageVideoViewerDemoTests.xctest */,
+				B68DE0C71D86ACEE00FD8B84 /* GQImageVideoViewerDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B68DE0A21D86ACEE00FD8B84 /* GQImageVideoViewerDemo */ = {
+			isa = PBXGroup;
+			children = (
+				B68DE0D91D86AD0900FD8B84 /* GQImageVideoViewer */,
+				B68DE0A61D86ACEE00FD8B84 /* AppDelegate.h */,
+				B68DE0A71D86ACEE00FD8B84 /* AppDelegate.m */,
+				B68DE1031D86AD4700FD8B84 /* DemoViewController.h */,
+				B68DE1041D86AD4700FD8B84 /* DemoViewController.m */,
+				B68DE0B21D86ACEE00FD8B84 /* Assets.xcassets */,
+				B68DE0B41D86ACEE00FD8B84 /* LaunchScreen.storyboard */,
+				B68DE0B71D86ACEE00FD8B84 /* Info.plist */,
+				B68DE0A31D86ACEE00FD8B84 /* Supporting Files */,
+			);
+			path = GQImageVideoViewerDemo;
+			sourceTree = "<group>";
+		};
+		B68DE0A31D86ACEE00FD8B84 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B68DE1061D86AD8200FD8B84 /* image */,
+				B68DE0A41D86ACEE00FD8B84 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B68DE0BF1D86ACEE00FD8B84 /* GQImageVideoViewerDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				B68DE0C01D86ACEE00FD8B84 /* GQImageVideoViewerDemoTests.m */,
+				B68DE0C21D86ACEE00FD8B84 /* Info.plist */,
+			);
+			path = GQImageVideoViewerDemoTests;
+			sourceTree = "<group>";
+		};
+		B68DE0CA1D86ACEE00FD8B84 /* GQImageVideoViewerDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B68DE0CB1D86ACEE00FD8B84 /* GQImageVideoViewerDemoUITests.m */,
+				B68DE0CD1D86ACEE00FD8B84 /* Info.plist */,
+			);
+			path = GQImageVideoViewerDemoUITests;
+			sourceTree = "<group>";
+		};
+		B68DE0D91D86AD0900FD8B84 /* GQImageVideoViewer */ = {
+			isa = PBXGroup;
+			children = (
+				B68DE0DA1D86AD0900FD8B84 /* GQBaseObject */,
+				B68DE0E11D86AD0900FD8B84 /* GQImageDownload */,
+				B68DE0F01D86AD0900FD8B84 /* GQImageVideoScrollView.h */,
+				B68DE0F11D86AD0900FD8B84 /* GQImageVideoScrollView.m */,
+				B68DE0F21D86AD0900FD8B84 /* GQImageVideoTableView.h */,
+				B68DE0F31D86AD0900FD8B84 /* GQImageVideoTableView.m */,
+				B68DE0F41D86AD0900FD8B84 /* GQImageVideoViewer.h */,
+				B68DE0F51D86AD0900FD8B84 /* GQImageVideoViewer.m */,
+				B68DE0F61D86AD0900FD8B84 /* GQImageVideoViewerConst.h */,
+			);
+			name = GQImageVideoViewer;
+			path = ../../GQImageVideoViewer;
+			sourceTree = "<group>";
+		};
+		B68DE0DA1D86AD0900FD8B84 /* GQBaseObject */ = {
+			isa = PBXGroup;
+			children = (
+				B68DE0DB1D86AD0900FD8B84 /* GQBaseImageView.h */,
+				B68DE0DC1D86AD0900FD8B84 /* GQBaseImageView.m */,
+				B68DE0DD1D86AD0900FD8B84 /* GQBaseTableView.h */,
+				B68DE0DE1D86AD0900FD8B84 /* GQBaseTableView.m */,
+				B68DE0DF1D86AD0900FD8B84 /* GQBaseVideoView.h */,
+				B68DE0E01D86AD0900FD8B84 /* GQBaseVideoView.m */,
+			);
+			path = GQBaseObject;
+			sourceTree = "<group>";
+		};
+		B68DE0E11D86AD0900FD8B84 /* GQImageDownload */ = {
+			isa = PBXGroup;
+			children = (
+				B68DE0E21D86AD0900FD8B84 /* GQCategory */,
+				B68DE0E51D86AD0900FD8B84 /* GQHttpRequestManager.h */,
+				B68DE0E61D86AD0900FD8B84 /* GQHttpRequestManager.m */,
+				B68DE0E71D86AD0900FD8B84 /* GQImageCache */,
+				B68DE0EC1D86AD0900FD8B84 /* GQImageDataDownload.h */,
+				B68DE0ED1D86AD0900FD8B84 /* GQImageDataDownload.m */,
+				B68DE0EE1D86AD0900FD8B84 /* GQURLOperation.h */,
+				B68DE0EF1D86AD0900FD8B84 /* GQURLOperation.m */,
+			);
+			path = GQImageDownload;
+			sourceTree = "<group>";
+		};
+		B68DE0E21D86AD0900FD8B84 /* GQCategory */ = {
+			isa = PBXGroup;
+			children = (
+				B68DE0E31D86AD0900FD8B84 /* NSData+GQCategory.h */,
+				B68DE0E41D86AD0900FD8B84 /* NSData+GQCategory.m */,
+			);
+			path = GQCategory;
+			sourceTree = "<group>";
+		};
+		B68DE0E71D86AD0900FD8B84 /* GQImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				B68DE0E81D86AD0900FD8B84 /* GQGobalPaths.h */,
+				B68DE0E91D86AD0900FD8B84 /* GQGobalPaths.m */,
+				B68DE0EA1D86AD0900FD8B84 /* GQImageCacheManager.h */,
+				B68DE0EB1D86AD0900FD8B84 /* GQImageCacheManager.m */,
+			);
+			path = GQImageCache;
+			sourceTree = "<group>";
+		};
+		B68DE1061D86AD8200FD8B84 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				B68DE1071D86AD8200FD8B84 /* 1.jpg */,
+				B68DE1081D86AD8200FD8B84 /* 10.jpg */,
+				B68DE1091D86AD8200FD8B84 /* 2.jpg */,
+				B68DE10A1D86AD8200FD8B84 /* 3.jpg */,
+				B68DE10B1D86AD8200FD8B84 /* 4.jpg */,
+				B68DE10C1D86AD8200FD8B84 /* 5.jpg */,
+				B68DE10D1D86AD8200FD8B84 /* 6.jpg */,
+				B68DE10E1D86AD8200FD8B84 /* 7.jpg */,
+				B68DE10F1D86AD8200FD8B84 /* 8.jpg */,
+				B68DE1101D86AD8200FD8B84 /* 9.jpg */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B68DE09F1D86ACEE00FD8B84 /* GQImageVideoViewerDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B68DE0D01D86ACEE00FD8B84 /* Build configuration list for PBXNativeTarget "GQImageVideoViewerDemo" */;
+			buildPhases = (
+				B68DE09C1D86ACEE00FD8B84 /* Sources */,
+				B68DE09D1D86ACEE00FD8B84 /* Frameworks */,
+				B68DE09E1D86ACEE00FD8B84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GQImageVideoViewerDemo;
+			productName = GQImageVideoViewerDemo;
+			productReference = B68DE0A01D86ACEE00FD8B84 /* GQImageVideoViewerDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B68DE0BB1D86ACEE00FD8B84 /* GQImageVideoViewerDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B68DE0D31D86ACEE00FD8B84 /* Build configuration list for PBXNativeTarget "GQImageVideoViewerDemoTests" */;
+			buildPhases = (
+				B68DE0B81D86ACEE00FD8B84 /* Sources */,
+				B68DE0B91D86ACEE00FD8B84 /* Frameworks */,
+				B68DE0BA1D86ACEE00FD8B84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B68DE0BE1D86ACEE00FD8B84 /* PBXTargetDependency */,
+			);
+			name = GQImageVideoViewerDemoTests;
+			productName = GQImageVideoViewerDemoTests;
+			productReference = B68DE0BC1D86ACEE00FD8B84 /* GQImageVideoViewerDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B68DE0C61D86ACEE00FD8B84 /* GQImageVideoViewerDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B68DE0D61D86ACEE00FD8B84 /* Build configuration list for PBXNativeTarget "GQImageVideoViewerDemoUITests" */;
+			buildPhases = (
+				B68DE0C31D86ACEE00FD8B84 /* Sources */,
+				B68DE0C41D86ACEE00FD8B84 /* Frameworks */,
+				B68DE0C51D86ACEE00FD8B84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B68DE0C91D86ACEE00FD8B84 /* PBXTargetDependency */,
+			);
+			name = GQImageVideoViewerDemoUITests;
+			productName = GQImageVideoViewerDemoUITests;
+			productReference = B68DE0C71D86ACEE00FD8B84 /* GQImageVideoViewerDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B68DE0981D86ACEE00FD8B84 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = gaoqi;
+				TargetAttributes = {
+					B68DE09F1D86ACEE00FD8B84 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					B68DE0BB1D86ACEE00FD8B84 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = B68DE09F1D86ACEE00FD8B84;
+					};
+					B68DE0C61D86ACEE00FD8B84 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = B68DE09F1D86ACEE00FD8B84;
+					};
+				};
+			};
+			buildConfigurationList = B68DE09B1D86ACEE00FD8B84 /* Build configuration list for PBXProject "GQImageVideoViewerDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B68DE0971D86ACEE00FD8B84;
+			productRefGroup = B68DE0A11D86ACEE00FD8B84 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B68DE09F1D86ACEE00FD8B84 /* GQImageVideoViewerDemo */,
+				B68DE0BB1D86ACEE00FD8B84 /* GQImageVideoViewerDemoTests */,
+				B68DE0C61D86ACEE00FD8B84 /* GQImageVideoViewerDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B68DE09E1D86ACEE00FD8B84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B68DE1191D86AD8200FD8B84 /* 8.jpg in Resources */,
+				B68DE1171D86AD8200FD8B84 /* 6.jpg in Resources */,
+				B68DE1111D86AD8200FD8B84 /* 1.jpg in Resources */,
+				B68DE1161D86AD8200FD8B84 /* 5.jpg in Resources */,
+				B68DE1151D86AD8200FD8B84 /* 4.jpg in Resources */,
+				B68DE0B61D86ACEE00FD8B84 /* LaunchScreen.storyboard in Resources */,
+				B68DE1131D86AD8200FD8B84 /* 2.jpg in Resources */,
+				B68DE1141D86AD8200FD8B84 /* 3.jpg in Resources */,
+				B68DE1181D86AD8200FD8B84 /* 7.jpg in Resources */,
+				B68DE11A1D86AD8200FD8B84 /* 9.jpg in Resources */,
+				B68DE1121D86AD8200FD8B84 /* 10.jpg in Resources */,
+				B68DE0B31D86ACEE00FD8B84 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B68DE0BA1D86ACEE00FD8B84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B68DE0C51D86ACEE00FD8B84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B68DE09C1D86ACEE00FD8B84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B68DE0F81D86AD0900FD8B84 /* GQBaseTableView.m in Sources */,
+				B68DE0F71D86AD0900FD8B84 /* GQBaseImageView.m in Sources */,
+				B68DE0FA1D86AD0900FD8B84 /* NSData+GQCategory.m in Sources */,
+				B68DE1051D86AD4700FD8B84 /* DemoViewController.m in Sources */,
+				B68DE1021D86AD0900FD8B84 /* GQImageVideoViewer.m in Sources */,
+				B68DE1001D86AD0900FD8B84 /* GQImageVideoScrollView.m in Sources */,
+				B68DE0F91D86AD0900FD8B84 /* GQBaseVideoView.m in Sources */,
+				B68DE0FC1D86AD0900FD8B84 /* GQGobalPaths.m in Sources */,
+				B68DE1011D86AD0900FD8B84 /* GQImageVideoTableView.m in Sources */,
+				B68DE0FE1D86AD0900FD8B84 /* GQImageDataDownload.m in Sources */,
+				B68DE0FF1D86AD0900FD8B84 /* GQURLOperation.m in Sources */,
+				B68DE0A81D86ACEE00FD8B84 /* AppDelegate.m in Sources */,
+				B68DE0FB1D86AD0900FD8B84 /* GQHttpRequestManager.m in Sources */,
+				B68DE0FD1D86AD0900FD8B84 /* GQImageCacheManager.m in Sources */,
+				B68DE0A51D86ACEE00FD8B84 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B68DE0B81D86ACEE00FD8B84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B68DE0C11D86ACEE00FD8B84 /* GQImageVideoViewerDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B68DE0C31D86ACEE00FD8B84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B68DE0CC1D86ACEE00FD8B84 /* GQImageVideoViewerDemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B68DE0BE1D86ACEE00FD8B84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B68DE09F1D86ACEE00FD8B84 /* GQImageVideoViewerDemo */;
+			targetProxy = B68DE0BD1D86ACEE00FD8B84 /* PBXContainerItemProxy */;
+		};
+		B68DE0C91D86ACEE00FD8B84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B68DE09F1D86ACEE00FD8B84 /* GQImageVideoViewerDemo */;
+			targetProxy = B68DE0C81D86ACEE00FD8B84 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B68DE0B41D86ACEE00FD8B84 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B68DE0B51D86ACEE00FD8B84 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B68DE0CE1D86ACEE00FD8B84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B68DE0CF1D86ACEE00FD8B84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B68DE0D11D86ACEE00FD8B84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GQImageVideoViewerDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wp.GQImageVideoViewerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B68DE0D21D86ACEE00FD8B84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GQImageVideoViewerDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wp.GQImageVideoViewerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B68DE0D41D86ACEE00FD8B84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = GQImageVideoViewerDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wp.GQImageVideoViewerDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GQImageVideoViewerDemo.app/GQImageVideoViewerDemo";
+			};
+			name = Debug;
+		};
+		B68DE0D51D86ACEE00FD8B84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = GQImageVideoViewerDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wp.GQImageVideoViewerDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GQImageVideoViewerDemo.app/GQImageVideoViewerDemo";
+			};
+			name = Release;
+		};
+		B68DE0D71D86ACEE00FD8B84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GQImageVideoViewerDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wp.GQImageVideoViewerDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = GQImageVideoViewerDemo;
+			};
+			name = Debug;
+		};
+		B68DE0D81D86ACEE00FD8B84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GQImageVideoViewerDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = wp.GQImageVideoViewerDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = GQImageVideoViewerDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B68DE09B1D86ACEE00FD8B84 /* Build configuration list for PBXProject "GQImageVideoViewerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B68DE0CE1D86ACEE00FD8B84 /* Debug */,
+				B68DE0CF1D86ACEE00FD8B84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B68DE0D01D86ACEE00FD8B84 /* Build configuration list for PBXNativeTarget "GQImageVideoViewerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B68DE0D11D86ACEE00FD8B84 /* Debug */,
+				B68DE0D21D86ACEE00FD8B84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B68DE0D31D86ACEE00FD8B84 /* Build configuration list for PBXNativeTarget "GQImageVideoViewerDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B68DE0D41D86ACEE00FD8B84 /* Debug */,
+				B68DE0D51D86ACEE00FD8B84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B68DE0D61D86ACEE00FD8B84 /* Build configuration list for PBXNativeTarget "GQImageVideoViewerDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B68DE0D71D86ACEE00FD8B84 /* Debug */,
+				B68DE0D81D86ACEE00FD8B84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B68DE0981D86ACEE00FD8B84 /* Project object */;
+}
