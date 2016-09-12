@@ -201,13 +201,13 @@
 			children = (
 				B68DE0DA1D86AD0900FD8B84 /* GQBaseObject */,
 				B68DE0E11D86AD0900FD8B84 /* GQImageDownload */,
+				B68DE0F61D86AD0900FD8B84 /* GQImageVideoViewerConst.h */,
 				B68DE0F01D86AD0900FD8B84 /* GQImageVideoScrollView.h */,
 				B68DE0F11D86AD0900FD8B84 /* GQImageVideoScrollView.m */,
 				B68DE0F21D86AD0900FD8B84 /* GQImageVideoTableView.h */,
 				B68DE0F31D86AD0900FD8B84 /* GQImageVideoTableView.m */,
 				B68DE0F41D86AD0900FD8B84 /* GQImageVideoViewer.h */,
 				B68DE0F51D86AD0900FD8B84 /* GQImageVideoViewer.m */,
-				B68DE0F61D86AD0900FD8B84 /* GQImageVideoViewerConst.h */,
 			);
 			name = GQImageVideoViewer;
 			path = ../../GQImageVideoViewer;
@@ -230,9 +230,9 @@
 			isa = PBXGroup;
 			children = (
 				B68DE0E21D86AD0900FD8B84 /* GQCategory */,
+				B68DE0E71D86AD0900FD8B84 /* GQImageCache */,
 				B68DE0E51D86AD0900FD8B84 /* GQHttpRequestManager.h */,
 				B68DE0E61D86AD0900FD8B84 /* GQHttpRequestManager.m */,
-				B68DE0E71D86AD0900FD8B84 /* GQImageCache */,
 				B68DE0EC1D86AD0900FD8B84 /* GQImageDataDownload.h */,
 				B68DE0ED1D86AD0900FD8B84 /* GQImageDataDownload.m */,
 				B68DE0EE1D86AD0900FD8B84 /* GQURLOperation.h */,
@@ -652,6 +652,7 @@
 				B68DE0D21D86ACEE00FD8B84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B68DE0D31D86ACEE00FD8B84 /* Build configuration list for PBXNativeTarget "GQImageVideoViewerDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -660,6 +661,7 @@
 				B68DE0D51D86ACEE00FD8B84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B68DE0D61D86ACEE00FD8B84 /* Build configuration list for PBXNativeTarget "GQImageVideoViewerDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -668,6 +670,7 @@
 				B68DE0D81D86ACEE00FD8B84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

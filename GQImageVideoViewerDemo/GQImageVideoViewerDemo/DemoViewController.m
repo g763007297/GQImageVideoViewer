@@ -29,7 +29,7 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:CGRectMake(CGRectGetMaxX(self.view.frame)/2-100, CGRectGetMaxY(self.view.frame)/2+140, 200, 40)];
-    [button setTitle:@"点击此处查看图片" forState:UIControlStateNormal];
+    [button setTitle:@"点击此处查看图片和视频" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     
     button.layer.borderColor = [UIColor orangeColor].CGColor;
@@ -79,17 +79,16 @@
 //        [GQImageVideoViewer sharedInstance].laucnDirection = GQLaunchDirectionRight;
 //        [[GQImageVideoViewer sharedInstance] showInView:self.navigationController.view];
     
-    
     //    链式调用
     [GQImageVideoViewer sharedInstance]
     .imageArrayChain(imageArray)
     .usePageControlChain(NO)
-    .selectIndexChain(6)
+    .selectIndexChain(12)
     .achieveSelectIndexChain(^(NSInteger selectIndex){
         NSLog(@"%ld",selectIndex);
     })
     .launchDirectionChain(GQLaunchDirectionRight)
-    .showViewChain(demoView);
+    .showViewChain(self.navigationController.view);
 }
 
 @end
