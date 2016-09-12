@@ -69,15 +69,15 @@
                                       @"http://a.hiphotos.baidu.com/image/pic/item/c8177f3e6709c93d8087f2d19a3df8dcd100549b.jpg",
                                       @"http://g.hiphotos.baidu.com/image/pic/item/a8ec8a13632762d0a97e5899a5ec08fa513dc650.jpg"]];
     
-    //基本调用
-    //    [[GQImageViewer sharedInstance] setImageArray:imageArray];
-    //    [GQImageViewer sharedInstance].usePageControl = YES;
-    //    [GQImageViewer sharedInstance].selectIndex = 5;
-    //    [GQImageViewer sharedInstance].achieveSelectIndex = ^(NSInteger selectIndex){
-    //        NSLog(@"%ld",selectIndex);
-    //    };
-    //    [GQImageViewer sharedInstance].laucnDirection = GQLaunchDirectionRight;
-    //    [[GQImageViewer sharedInstance] showInView:self.navigationController.view];
+//    基本调用
+//        [[GQImageVideoViewer sharedInstance] setImageArray:imageArray];
+//        [GQImageVideoViewer sharedInstance].usePageControl = YES;
+//        [GQImageVideoViewer sharedInstance].selectIndex = 6;
+//        [GQImageVideoViewer sharedInstance].achieveSelectIndex = ^(NSInteger selectIndex){
+//            NSLog(@"%ld",selectIndex);
+//        };
+//        [GQImageVideoViewer sharedInstance].laucnDirection = GQLaunchDirectionRight;
+//        [[GQImageVideoViewer sharedInstance] showInView:self.navigationController.view];
     
     
     //    链式调用
@@ -86,11 +86,10 @@
     .usePageControlChain(NO)
     .selectIndexChain(6)
     .achieveSelectIndexChain(^(NSInteger selectIndex){
-        //        NSLog(@"%ld",selectIndex);
+        NSLog(@"%ld",selectIndex);
     })
     .launchDirectionChain(GQLaunchDirectionRight)
-    .showViewChain(self.navigationController.view);
-    
+    .showViewChain(demoView);
 }
 
 @end
