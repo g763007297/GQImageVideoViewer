@@ -1,7 +1,7 @@
  [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/angelcs1990/GQImageViewer/master/LICENSE)&nbsp;
 [![](https://img.shields.io/badge/platform-iOS-brightgreen.svg)](http://cocoapods.org/?q=GQImageViewer)&nbsp;
 [![support](https://img.shields.io/badge/support-iOS6.0%2B-blue.svg)](https://www.apple.com/nl/ios/)&nbsp;
-# ImageViewer
+# GQImageVideoViewer
 一款仿微信多图片及视频浏览器，图片和视频原尺寸显示，不会变形，双击图片放大缩小，单击消失，支持多张本地和网络图片以及网络视频混合查看，支持链式调用。不需要跳转到新的viewcontroller，就可以覆盖当前控制器显示。
 
 ## Overview
