@@ -8,11 +8,8 @@
 
 #import "DemoViewController.h"
 #import "GQImageVideoViewer.h"
-#import <AVFoundation/AVFoundation.h>
 
-@interface DemoViewController (){
-    UIView *demoView;
-}
+@interface DemoViewController ()
 
 @end
 
@@ -40,10 +37,6 @@
     
     [button addTarget:self action:@selector(showImageViewer:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
-    
-    demoView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.view.frame)/2-100, 64, 200, 300)];
-    demoView.backgroundColor = [UIColor redColor];
-    [self.view addSubview:demoView];
 }
 
 - (void)showImageViewer:(id)sender{

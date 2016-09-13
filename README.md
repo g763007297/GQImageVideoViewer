@@ -22,10 +22,38 @@
 
 3.在需要触发查看器的地方添加以下代码:
 
+注:
+< 1 >图片数组中可以放单独的NSString,NSUrl,UIImage,UIImageView，如果是单独放这些类型，则默认为是图片类型。
+
+< 2 >如果需要放视频链接，则需要放字典或者GQBaseImageVideoModel类型，数组的key为以下两个：
+(1).GQURLString(链接地址，支持类型为NSUrl和NSString)
+(2).GQIsImageURL(是否为图片，如果是图片地址就传YES，如果是视频地址就传NO)。
+
 ```objc
 
+NSMutableArray *imageArray = [[NSMutableArray alloc] initWithCapacity:0];
+
+NSURL *url = [NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"];
+
+[imageArray addObjectsFromArray:@[@{GQIsImageURL:@(NO),
+                                        GQURLString:url},
+                                      @{GQIsImageURL:@(NO),
+                                        GQURLString:[NSURL URLWithString:@"http://192.168.31.152:8080/abc.mp4"]},
+                                      @{GQIsImageURL:@(NO),
+                                        GQURLString:url},
+                                      @{GQIsImageURL:@(YES),
+                                        GQURLString:@"http://cdn.cocimg.com/bbs/attachment/upload/30/5811301473150224.gif"},
+                                      @{GQIsImageURL:@(YES),
+                                        GQURLString:@"http://img0.imgtn.bdimg.com/it/u=513437991,1334115219&fm=206&gp=0.jpg"},
+                                      @{GQIsImageURL:@(YES),
+                                        GQURLString:@"http://h.hiphotos.baidu.com/image/pic/item/203fb80e7bec54e7f14e9ce2bf389b504ec26aa8.jpg"},
+                                      @{GQIsImageURL:@(YES),
+                                        GQURLString:@"http://f.hiphotos.baidu.com/image/pic/item/a8014c086e061d9507500dd67ff40ad163d9cacd.jpg"},
+                                      @{GQIsImageURL:@(YES)]];
+
+
 //基本调用
-[[GQImageVideoViewer sharedInstance] setImageArray:imageArray];//这是图片数组
+[[GQImageVideoViewer sharedInstance] setImageArray:imageArray];//这是图片和视频数组
 [GQImageVideoViewer sharedInstance].usePageControl = YES;//设置是否使用pageControl
 [GQImageVideoViewer sharedInstance].selectIndex = 5;//设置选中的图片索引
 [GQImageVideoViewer sharedInstance].achieveSelectIndex = ^(NSInteger selectIndex){
@@ -43,11 +71,11 @@
     NSLog(@"%ld",selectIndex);
 })
 .launchDirectionChain(GQLaunchDirectionRight)
-.showViewChain(demoView);
+.showViewChain(self.navigationController.view);
 
 ```
 
-特别说明，如果是下网络图片的话，在iOS9以上的系统需要添加plist字段，否则无法拉取图片:
+特别说明，如果是拉取网络图片的话，在iOS9以上的系统需要添加plist字段，否则无法拉取图片:
 
 ```objc
 
@@ -69,7 +97,11 @@
 
 github添加代码
 
-(2) wait a moment
+(2) 0.0.2
+
+添加model，传图片和视频数组更加方便。
+
+(3) wait a moment
 
 ##Support
 
