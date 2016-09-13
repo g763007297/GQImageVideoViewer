@@ -47,10 +47,9 @@
     self.selectedInexPath = [NSIndexPath indexPathForRow:0 inSection:0];
 }
 
-- (void)setImageArray:(NSMutableArray *)imageArray
+- (void)setDataArray:(NSArray *)dataArray
 {
-    _imageArray = [[NSMutableArray alloc] initWithCapacity:0];
-    [_imageArray addObjectsFromArray:imageArray];
+    _dataArray = [dataArray copy];
     [self reloadData];
 }
 
@@ -66,7 +65,7 @@
 #pragma mark - UITableView dataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _imageArray.count;
+    return _dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,7 +117,7 @@
     float y = self.contentOffset.y + edge + self.rowHeight/2;
     int row = y/self.rowHeight;
     
-    if (row >= self.imageArray.count || row < 0) {
+    if (row >= _dataArray.count || row < 0) {
         return;
     }
     
@@ -134,7 +133,7 @@
     float y = self.contentOffset.y + edge + self.rowHeight/2;
     int row = y/self.rowHeight;
     
-    if (row >= self.imageArray.count || row < 0) {
+    if (row >= _dataArray.count || row < 0) {
         return;
     }
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];

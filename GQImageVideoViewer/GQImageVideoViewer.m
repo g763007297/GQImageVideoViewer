@@ -65,15 +65,15 @@ __strong static GQImageVideoViewer *imageVideoViewerManager;
     return self;
 }
 
-@synthesize usePageControlChain = _usePageControlChain;
-@synthesize imageArrayChain =_imageArrayChain;
-@synthesize selectIndexChain = _selectIndexChain;
-@synthesize showViewChain = _showViewChain;
-@synthesize launchDirectionChain = _launchDirectionChain;
+@synthesize usePageControlChain     = _usePageControlChain;
+@synthesize dataArrayChain          = _dataArrayChain;
+@synthesize selectIndexChain        = _selectIndexChain;
+@synthesize showViewChain           = _showViewChain;
+@synthesize launchDirectionChain    = _launchDirectionChain;
 @synthesize achieveSelectIndexChain = _achieveSelectIndexChain;
 
 GQChainObjectDefine(usePageControlChain, UsePageControl, BOOL, GQUsePageControlChain);
-GQChainObjectDefine(imageArrayChain, ImageArray, NSArray *, GQImageArrayChain);
+GQChainObjectDefine(dataArrayChain, DataArray, NSArray *, GQDataArrayChain);
 GQChainObjectDefine(selectIndexChain, SelectIndex, NSInteger, GQSelectIndexChain);
 GQChainObjectDefine(launchDirectionChain, LaucnDirection, GQLaunchDirection, GQLaunchDirectionChain);
 GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexBlock, GQAchieveIndexChain);
@@ -98,22 +98,22 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
     [self updateNumberView];
 }
 
-- (void)setImageArray:(NSArray *)imageArray
+- (void)setDataArray:(NSArray *)dataArray
 {
-    _imageArray = [[self handleImageUrlArray:imageArray] copy];
+    _dataArray = [[self handleImageUrlArray:dataArray] copy];
     if (!_isVisible) {
         return;
     }
     
-    NSAssert([_imageArray count] > 0, @"imageArray count must be greater than zero");
+    NSAssert([_dataArray count] > 0, @"imageArray count must be greater than zero");
     
-    if (_selectIndex>[imageArray count]-1&&[_imageArray count]>0){
-        _selectIndex = [imageArray count]-1;
+    if (_selectIndex>[_dataArray count]-1&&[_dataArray count]>0){
+        _selectIndex = [_dataArray count]-1;
         
         [self updatePageNumber];
         [self scrollToSettingIndex];
     }
-    _tableView.imageArray = [_imageArray copy];
+    _tableView.dataArray = [_dataArray copy];
 }
 
 - (void)setSelectIndex:(NSInteger)selectIndex
@@ -127,10 +127,10 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
     }
     
     NSAssert(selectIndex>=0, @"_selectIndex must be greater than zero");
-    NSAssert([_imageArray count] > 0, @"imageArray count must be greater than zero");
+    NSAssert([_dataArray count] > 0, @"imageArray count must be greater than zero");
     
-    if (selectIndex>[_imageArray count]-1){
-        _selectIndex = [_imageArray count]-1;
+    if (selectIndex>[_dataArray count]-1){
+        _selectIndex = [_dataArray count]-1;
     }else if (selectIndex < 0){
         _selectIndex = 0;
     }
@@ -141,7 +141,7 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
 
 - (void)showInView:(UIView *)showView
 {
-    if ([_imageArray count]==0) {
+    if ([_dataArray count]==0) {
         return;
     }
     
@@ -226,7 +226,7 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
     [self insertSubview:_tableView atIndex:0];
     
     //将所有的图片url赋给tableView显示
-    _tableView.imageArray = [_imageArray copy];
+    _tableView.dataArray = [_dataArray copy];
     
     [self scrollToSettingIndex];
 }
@@ -262,7 +262,7 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
     
     if (_usePageControl) {
         _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(_superViewRect)-10, 0, 10)];
-        _pageControl.numberOfPages = _imageArray.count;
+        _pageControl.numberOfPages = _dataArray.count;
         _pageControl.tag = pageNumberTag;
         _pageControl.currentPage = _selectIndex;
         [self insertSubview:_pageControl atIndex:1];
@@ -270,7 +270,7 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
         _pageLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(_superViewRect)/2 - 30, CGRectGetHeight(_superViewRect) - 20, 60, 15)];
         _pageLabel.textAlignment = NSTextAlignmentCenter;
         _pageLabel.tag = pageNumberTag;
-        _pageLabel.text = [NSString stringWithFormat:@"%zd/%zd",(_selectIndex+1),_imageArray.count];
+        _pageLabel.text = [NSString stringWithFormat:@"%zd/%zd",(_selectIndex+1),_dataArray.count];
         _pageLabel.textColor = [UIColor whiteColor];
         [self insertSubview:_pageLabel atIndex:1];
     }
@@ -286,7 +286,7 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
     if (_usePageControl) {
         _pageControl.currentPage = self.selectIndex;
     }else{
-        _pageLabel.text = [NSString stringWithFormat:@"%zd/%zd",(_selectIndex+1),_imageArray.count];
+        _pageLabel.text = [NSString stringWithFormat:@"%zd/%zd",(_selectIndex+1),_dataArray.count];
     }
 }
 
@@ -302,12 +302,17 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
 //图片处理
 - (NSArray *)handleImageUrlArray:(NSArray *)imageURlArray{
     NSMutableArray *handleImages = [[NSMutableArray alloc] initWithCapacity:[imageURlArray count]];
-    for (id imageObject in imageURlArray) {
-        id handleImageUrl = imageObject;
-        if ([imageObject isKindOfClass:[NSString class]]) {
-            handleImageUrl = [NSURL URLWithString:imageObject];
+    for (int i = 0 ; i < [imageURlArray count]; i++) {
+        id imageObject = imageURlArray[i];
+        //如果不是GQBaseImageVideoModel类和NSDictionary类，就默认为图片资源；
+        if (![imageObject isKindOfClass:[GQBaseImageVideoModel class]]&&![imageObject isKindOfClass:[NSDictionary class]]) {
+            imageObject = [@{GQURLString:imageObject,GQIsImageURL:@(YES)} copy];
         }
-        [handleImages addObject:handleImageUrl];
+        //如果为NSDictionary类，则改装成GQBaseImageVideoModel类
+        if ([imageObject isKindOfClass:[NSDictionary class]]) {
+            imageObject = [[GQBaseImageVideoModel alloc] initWithDataDic:imageObject];
+        }
+        [handleImages addObject:imageObject];
     }
     return handleImages;
 }

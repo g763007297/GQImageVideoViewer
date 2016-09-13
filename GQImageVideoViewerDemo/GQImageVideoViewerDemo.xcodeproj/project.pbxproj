@@ -36,6 +36,7 @@
 		B68DE1181D86AD8200FD8B84 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B68DE10E1D86AD8200FD8B84 /* 7.jpg */; };
 		B68DE1191D86AD8200FD8B84 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B68DE10F1D86AD8200FD8B84 /* 8.jpg */; };
 		B68DE11A1D86AD8200FD8B84 /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B68DE1101D86AD8200FD8B84 /* 9.jpg */; };
+		B6CA1E531D8792360096A86E /* GQBaseImageVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B6CA1E521D8792360096A86E /* GQBaseImageVideoModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,8 @@
 		B68DE10E1D86AD8200FD8B84 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
 		B68DE10F1D86AD8200FD8B84 /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
 		B68DE1101D86AD8200FD8B84 /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
+		B6CA1E511D8792360096A86E /* GQBaseImageVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQBaseImageVideoModel.h; sourceTree = "<group>"; };
+		B6CA1E521D8792360096A86E /* GQBaseImageVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQBaseImageVideoModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +225,8 @@
 				B68DE0DE1D86AD0900FD8B84 /* GQBaseTableView.m */,
 				B68DE0DF1D86AD0900FD8B84 /* GQBaseVideoView.h */,
 				B68DE0E01D86AD0900FD8B84 /* GQBaseVideoView.m */,
+				B6CA1E511D8792360096A86E /* GQBaseImageVideoModel.h */,
+				B6CA1E521D8792360096A86E /* GQBaseImageVideoModel.m */,
 			);
 			path = GQBaseObject;
 			sourceTree = "<group>";
@@ -430,6 +435,7 @@
 				B68DE0FE1D86AD0900FD8B84 /* GQImageDataDownload.m in Sources */,
 				B68DE0FF1D86AD0900FD8B84 /* GQURLOperation.m in Sources */,
 				B68DE0A81D86ACEE00FD8B84 /* AppDelegate.m in Sources */,
+				B6CA1E531D8792360096A86E /* GQBaseImageVideoModel.m in Sources */,
 				B68DE0FB1D86AD0900FD8B84 /* GQHttpRequestManager.m in Sources */,
 				B68DE0FD1D86AD0900FD8B84 /* GQImageCacheManager.m in Sources */,
 				B68DE0A51D86ACEE00FD8B84 /* main.m in Sources */,

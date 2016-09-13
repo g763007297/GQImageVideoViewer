@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GQBaseImageVideoModel.h"
 
 @interface GQImageVideoScrollView : UIScrollView
 
-@property (nonatomic, retain) id data;
+@property (nonatomic, copy) GQBaseImageVideoModel *data;
 
 @property(nonatomic,assign) NSInteger row;
 

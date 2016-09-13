@@ -150,19 +150,19 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
 - (void)setItem:(NSURL *)item
 {
     if ([currentUrlString isEqualToString:item.absoluteString]&&_player.currentItem) {
+        currentUrlString = item.absoluteString;
         if (_playerItem.status == AVPlayerItemStatusReadyToPlay) {
             [_player play];
             return;
         }
-    }else{
-        [self showLoading];
-        currentUrlString = item.absoluteString;
-        _item = [item copy];
-        [self removeObserver];
-        _playerItem = [[AVPlayerItem alloc] initWithURL:item];
-        [self.player replaceCurrentItemWithPlayerItem:_playerItem];
-        [self addObserver];
     }
+    [self showLoading];
+    currentUrlString = item.absoluteString;
+    _item = [item copy];
+    [self removeObserver];
+    _playerItem = [[AVPlayerItem alloc] initWithURL:item];
+    [self.player replaceCurrentItemWithPlayerItem:_playerItem];
+    [self addObserver];
 }
 
 -(void)showLoading

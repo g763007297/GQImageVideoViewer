@@ -52,7 +52,7 @@
     }
     GQImageVideoScrollView *photoSV = (GQImageVideoScrollView *)[cell.contentView viewWithTag:100];
     
-    photoSV.data = self.imageArray[indexPath.row];
+    photoSV.data = self.dataArray[indexPath.row];
     
     photoSV.row = indexPath.row;
     

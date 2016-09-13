@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GQBaseImageVideoModel.h"
 
 typedef enum {
     GQLaunchDirectionBottom = 1,//从下往上推出
@@ -21,7 +22,7 @@ typedef void (^GQAchieveIndexBlock)(NSInteger selectIndex);//获取当前图片�
 
 //链式调用block
 typedef GQImageVideoViewer * (^GQUsePageControlChain)(BOOL pageControl);
-typedef GQImageVideoViewer * (^GQImageArrayChain)(NSArray *imageArray);
+typedef GQImageVideoViewer * (^GQDataArrayChain)(NSArray *dataArray);
 typedef GQImageVideoViewer * (^GQSelectIndexChain)(NSInteger selectIndex);
 typedef GQImageVideoViewer * (^GQLaunchDirectionChain)(GQLaunchDirection launchDirection);
 typedef GQImageVideoViewer * (^GQAchieveIndexChain)(GQAchieveIndexBlock selectIndexBlock);
@@ -38,7 +39,7 @@ typedef void (^GQShowViewChain)(UIView *showView);
 /**
  *  图片数组    type : NSArray *
  */
-@property (nonatomic, copy, readonly) GQImageArrayChain imageArrayChain;
+@property (nonatomic, copy, readonly) GQDataArrayChain dataArrayChain;
 
 /**
  *  选中的图片索引    type : NSInteger
@@ -76,7 +77,7 @@ typedef void (^GQShowViewChain)(UIView *showView);
 /**
  *  图片数组
  */
-@property (nonatomic, copy) NSArray *imageArray;//图片数组
+@property (nonatomic, copy) NSArray *dataArray;//图片数组
 
 /**
  *  获取当前选中的图片index

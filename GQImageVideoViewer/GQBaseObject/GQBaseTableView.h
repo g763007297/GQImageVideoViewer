@@ -10,7 +10,7 @@
 
 @interface GQBaseTableView : UITableView<UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic, strong) NSMutableArray *imageArray;
+@property (nonatomic, strong) NSArray *dataArray;
 
 @property (nonatomic, copy) void (^block)(NSInteger index);
 //当前选中的单元格IndexPath

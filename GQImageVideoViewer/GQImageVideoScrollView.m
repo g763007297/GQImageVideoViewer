@@ -18,6 +18,7 @@
 @interface GQImageVideoScrollView()<UIScrollViewDelegate>{
     GQBaseImageView *_imageView;
     GQBaseVideoView *_videoView;
+    NSURL           *currentUrl;
 }
 
 @end
@@ -71,34 +72,42 @@
 }
 
 - (void)beginDisplay{
-    if ([_data isKindOfClass:[NSURLRequest class]]) {
-        [_videoView setItem:((NSURLRequest *)_data).URL];
+    if (currentUrl&&!_data.GQIsImageURL) {
+        [_videoView setItem:currentUrl];
     }
 }
 
-- (void)setData:(id)data
+- (void)setData:(GQBaseImageVideoModel *)data
 {
     _data = [data copy];
-    if ([data isKindOfClass:[UIImage class]])
+    id urlString = _data.GQURLString;
+    UIImage *image = nil;
+    currentUrl = nil;
+    if ([urlString isKindOfClass:[UIImage class]])
     {
-        [_videoView setHidden:YES];
-        _imageView.image = data;
-    }else if ([data isKindOfClass:[NSString class]]||[data isKindOfClass:[NSURL class]])
+        image = urlString;
+    }else if ([urlString isKindOfClass:[NSString class]]||[urlString isKindOfClass:[NSURL class]])
     {
-        [_videoView setHidden:YES];
-        NSURL *imageUrl = data;
-        if ([data isKindOfClass:[NSString class]]) {
-            imageUrl = [NSURL URLWithString:data];
+        currentUrl = urlString;
+        if ([urlString isKindOfClass:[NSString class]]) {
+            currentUrl = [NSURL URLWithString:urlString];
         }
-        [_imageView cancelCurrentImageRequest];
-        [_imageView loadImage:imageUrl placeHolder:_placeholderImage complete:nil];
-    }else if ([data isKindOfClass:[UIImageView class]])
+    }else if ([urlString isKindOfClass:[UIImageView class]])
     {
+        UIImageView *imageView = (UIImageView *)urlString;
+        image = imageView.image;
+    }
+    if (_data.GQIsImageURL) {
         [_videoView setHidden:YES];
-        UIImageView *imageView = (UIImageView *)data;
-        _imageView.image = imageView.image;
-    }else
-    {
+        if (currentUrl) {
+            [_imageView cancelCurrentImageRequest];
+            [_imageView loadImage:currentUrl placeHolder:_placeholderImage complete:nil];
+        }else if(image){
+            _imageView.image = image;
+        }else{
+            _imageView.image = nil;
+        }
+    }else{
         _imageView.image = nil;
         [_videoView setHidden:NO];
     }
