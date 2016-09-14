@@ -13,10 +13,14 @@
 
 @property (nonatomic, strong) NSURL *item;
 
-@property(nonatomic,assign) NSInteger row;
-
+/**
+ *  暂停
+ */
 - (void)puase;
 
+/**
+ *  停止播放
+ */
 - (void)stop;
 
 @end

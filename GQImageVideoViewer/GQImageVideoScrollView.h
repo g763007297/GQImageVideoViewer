@@ -17,10 +17,10 @@
 
 @property (nonatomic, copy) UIImage *placeholderImage;
 
-//暂停播放
+//暂停展示视频画面
 - (void)stopDisplay;
 
-//开始播放
+//开始展示视频画面
 - (void)beginDisplay;
 
 @end

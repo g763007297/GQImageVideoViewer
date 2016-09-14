@@ -51,7 +51,7 @@
     [imageArray addObjectsFromArray:@[@{GQIsImageURL:@(NO),
                                         GQURLString:url},
                                       @{GQIsImageURL:@(NO),
-                                        GQURLString:[NSURL URLWithString:@"http://192.168.31.152:8080/abc.mp4"]},
+                                        GQURLString:[NSURL URLWithString:@"http://res.jiuyan.info/in_promo/20160627_meinan/video/tang.mp4"]},
                                       @{GQIsImageURL:@(NO),
                                         GQURLString:url},
                                       @{GQIsImageURL:@(YES),
@@ -79,20 +79,20 @@
                                       ]];
     
 //    基本调用
-//        [[GQImageVideoViewer sharedInstance] setImageArray:imageArray];
-//        [GQImageVideoViewer sharedInstance].usePageControl = YES;
-//        [GQImageVideoViewer sharedInstance].selectIndex = 6;
-//        [GQImageVideoViewer sharedInstance].achieveSelectIndex = ^(NSInteger selectIndex){
-//            NSLog(@"%ld",selectIndex);
-//        };
-//        [GQImageVideoViewer sharedInstance].laucnDirection = GQLaunchDirectionRight;
-//        [[GQImageVideoViewer sharedInstance] showInView:self.navigationController.view];
+//    [[GQImageVideoViewer sharedInstance] setImageArray:imageArray];
+//    [GQImageVideoViewer sharedInstance].usePageControl = YES;
+//    [GQImageVideoViewer sharedInstance].selectIndex = 6;
+//    [GQImageVideoViewer sharedInstance].achieveSelectIndex = ^(NSInteger selectIndex){
+//        NSLog(@"%ld",selectIndex);
+//    };
+//    [GQImageVideoViewer sharedInstance].laucnDirection = GQLaunchDirectionRight;
+//    [[GQImageVideoViewer sharedInstance] showInView:self.navigationController.view];
     
     //    链式调用
     [GQImageVideoViewer sharedInstance]
     .dataArrayChain(imageArray)
     .usePageControlChain(NO)
-    .selectIndexChain(12)
+    .selectIndexChain(11)
     .achieveSelectIndexChain(^(NSInteger selectIndex){
         NSLog(@"%ld",selectIndex);
     })

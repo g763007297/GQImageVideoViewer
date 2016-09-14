@@ -73,14 +73,18 @@
 {
     [super scrollToRowAtIndexPath:indexPath atScrollPosition:scrollPosition animated:animated];
     
-    if (!currentIndexPath) {
+    //如果不存在currentIndexPath
+    if (!currentIndexPath)
+    {
         currentIndexPath = indexPath;
-    }else if (currentIndexPath != indexPath){
+    }else if (currentIndexPath != indexPath)//如果currentIndexPath不等于indexPath则停止currentIndexPath的播放
+    {
         UITableViewCell *cell = [self cellForRowAtIndexPath:currentIndexPath];
         GQImageVideoScrollView *photoSV = (GQImageVideoScrollView *)[cell.contentView viewWithTag:100];
         [photoSV stopDisplay];
         currentIndexPath = indexPath;
     }
+    //播放当前indexPath
     UITableViewCell *cell = [self cellForRowAtIndexPath:indexPath];
     GQImageVideoScrollView *photoSV = (GQImageVideoScrollView *)[cell.contentView viewWithTag:100];
     [photoSV beginDisplay];

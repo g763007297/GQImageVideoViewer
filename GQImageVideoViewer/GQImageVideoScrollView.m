@@ -67,12 +67,15 @@
     return self;
 }
 
-- (void)stopDisplay{
+- (void)stopDisplay
+{
     [_videoView puase];
 }
 
-- (void)beginDisplay{
-    if (currentUrl&&!_data.GQIsImageURL) {
+- (void)beginDisplay
+{
+    if (currentUrl&&!_data.GQIsImageURL)
+    {
         [_videoView setItem:currentUrl];
     }
 }

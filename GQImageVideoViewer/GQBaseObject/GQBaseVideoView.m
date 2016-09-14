@@ -9,17 +9,15 @@
 #import "GQBaseVideoView.h"
 #import "GQImageVideoViewerConst.h"
 
-@interface GQBaseVideoView(){
-    NSString *currentUrlString;
-}
+@interface GQBaseVideoView()
 
-@property (nonatomic, strong) UIActivityIndicatorView *indicator;
+@property (nonatomic, strong) UIActivityIndicatorView *indicator;//加载指示器
 
-@property (nonatomic, strong) AVPlayerLayer *playerLayer;
+@property (nonatomic, strong) AVPlayerLayer *playerLayer;//播放视图载体
 
-@property (nonatomic, strong) AVPlayer *player;
+@property (nonatomic, strong) AVPlayer *player;//播放器
 
-@property (nonatomic, strong) AVPlayerItem *playerItem;
+@property (nonatomic, strong) AVPlayerItem *playerItem;//当前播放条
 
 @end
 
@@ -29,7 +27,8 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
 
 #pragma mark -- privateMethod
 
-- (instancetype)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame
+{
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor blackColor];
@@ -41,8 +40,33 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
     return self;
 }
 
+-(void)showLoading
+{
+    if (!_indicator) {
+        _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        _indicator.center = CGPointMake(self.bounds.origin.x+(self.bounds.size.width/2), self.bounds.origin.y+(self.bounds.size.height/2));
+        [_indicator setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin];
+    }
+    if (!_indicator.isAnimating||_indicator.hidden) {
+        _indicator.hidden = NO;
+        if(!_indicator.superview){
+            [self addSubview:_indicator];
+        }
+        [_indicator startAnimating];
+    }
+}
+
+-(void)hideLoading
+{
+    if (_indicator) {
+        [_indicator stopAnimating];
+        _indicator.hidden = YES;
+    }
+}
+
 - (void)addObserver
 {
+    //判断是否已经添加KVO和存在父视图
     if (![self isExitObserver]&&self.superview)
     {
         //KVO
@@ -68,24 +92,15 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
     }
 }
 
-- (void)willMoveToSuperview:(UIView *)newSuperview{
-    [super willMoveToSuperview:newSuperview];
-    self.frame = newSuperview.bounds;
-    _playerLayer.frame = newSuperview.bounds;
-}
-
-- (void)removeFromSuperview{
-    [self removeObserver];
-    [super removeFromSuperview];
-}
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"status"]&&object == _playerItem) {
+    if ([keyPath isEqualToString:@"status"]&&object == _playerItem)
+    {
         AVPlayerItemStatus status = _playerItem.status;
         switch (status) {
             case AVPlayerItemStatusReadyToPlay:
             {
+                //判断_player的status是否是准备播放
                 if (_player.status == AVPlayerStatusReadyToPlay) {
                     [self hideLoading];
                 }
@@ -102,23 +117,41 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
             default:
                 break;
         }
-    }else if ([keyPath isEqualToString:@"status"]&&object == _player){
+    }else if ([keyPath isEqualToString:@"status"]&&object == _player)
+    {
         AVPlayerStatus stadus = _player.status;
         switch (stadus) {
-            case AVPlayerStatusFailed:{
-                [self hideLoading];
-                break;
-            }
+                //判断_playerItem的status是否为准备播放
             case AVPlayerStatusReadyToPlay:{
-                if (_playerItem.status == AVPlayerItemStatusReadyToPlay) {
+                if (_playerItem.status == AVPlayerItemStatusReadyToPlay)
+                {
                     [self hideLoading];
                 }
+                break;
+            }
+            case AVPlayerStatusFailed:{
+                [self hideLoading];
                 break;
             }
             default:
                 break;
         }
     }
+}
+
+#pragma mark -- Object lifecycle
+
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+    [super willMoveToSuperview:newSuperview];
+    self.frame = newSuperview.bounds;
+    _playerLayer.frame = newSuperview.bounds;
+}
+
+- (void)removeFromSuperview
+{
+    [self removeObserver];
+    [super removeFromSuperview];
 }
 
 - (void)dealloc
@@ -149,43 +182,31 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
 
 - (void)setItem:(NSURL *)item
 {
-    if ([currentUrlString isEqualToString:item.absoluteString]&&_player.currentItem) {
-        currentUrlString = item.absoluteString;
-        if (_playerItem.status == AVPlayerItemStatusReadyToPlay) {
+    //判断之前播放的url地址是否一致
+    if ([_item.absoluteString isEqualToString:item.absoluteString]&&_player.currentItem)
+    {
+        //如果一致并且_playerItem的status是准备播放时就直接播放
+        if (_playerItem.status == AVPlayerItemStatusReadyToPlay&&_player.status == AVPlayerStatusReadyToPlay)
+        {
             [_player play];
             return;
         }
     }
-    [self showLoading];
-    currentUrlString = item.absoluteString;
     _item = [item copy];
+    
+    [self showLoading];
+    
+    //移除所有之前的KVO
     [self removeObserver];
-    _playerItem = [[AVPlayerItem alloc] initWithURL:item];
-    [self.player replaceCurrentItemWithPlayerItem:_playerItem];
+    
+    //重置_playerItem
+    _playerItem = [[AVPlayerItem alloc] initWithURL:_item];
+    
+    //添加KVO
     [self addObserver];
+    
+    //替换player的当前播放item
+    [self.player replaceCurrentItemWithPlayerItem:_playerItem];
 }
 
--(void)showLoading
-{
-    if (!_indicator) {
-        _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        _indicator.center = CGPointMake(self.bounds.origin.x+(self.bounds.size.width/2), self.bounds.origin.y+(self.bounds.size.height/2));
-        [_indicator setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin];
-    }
-    if (!_indicator.isAnimating||_indicator.hidden) {
-        _indicator.hidden = NO;
-        if(!_indicator.superview){
-            [self addSubview:_indicator];
-        }
-        [_indicator startAnimating];
-    }
-}
-
--(void)hideLoading
-{
-    if (_indicator) {
-        [_indicator stopAnimating];
-        _indicator.hidden = YES;
-    }
-}
 @end
