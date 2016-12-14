@@ -11,6 +11,34 @@
 
 #import "GQImageVideoViewerConst.h"
 
+@interface GQImageVideoCollectionViewCell : UICollectionViewCell
+
+@end
+
+@implementation GQImageVideoCollectionViewCell
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self initView];
+    }
+    return self;
+}
+
+- (void)initView {
+    GQImageVideoScrollView *photoSV = [[GQImageVideoScrollView alloc] init];
+    self.backgroundColor = [UIColor clearColor];
+    photoSV.tag = 100;
+    [self.contentView addSubview:photoSV];
+}
+
+- (void)layoutSubviews {
+    GQImageVideoScrollView *photoSV = (GQImageVideoScrollView *)[self.contentView viewWithTag:100];
+    photoSV.frame = self.bounds;
+}
+
+@end
+
 @interface GQImageVideoTableView()
 {
     NSIndexPath *currentIndexPath;
@@ -20,36 +48,22 @@
 
 @implementation GQImageVideoTableView
 
-- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
+- (id)initWithFrame:(CGRect)frame collectionViewLayout:(nonnull UICollectionViewLayout *)layout
 {
-    self = [super initWithFrame:frame style:style];
+    self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
+        [self registerClass:[GQImageVideoCollectionViewCell class] forCellWithReuseIdentifier:@"GQImageVideoScrollViewIdentify"];
         self.pagingEnabled = YES;
     }
     return self;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identify = @"GQImageVideoScrollViewIdentify";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
+    GQImageVideoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
     
-    if (cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        //将cell.contentView顺时针旋转90度
-        cell.contentView.transform = CGAffineTransformMakeRotation(M_PI_2);
-        cell.backgroundColor = [UIColor clearColor];
-        
-        GQImageVideoScrollView *photoSV = [[GQImageVideoScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        
-        photoSV.tag = 100;
-        [cell.contentView addSubview:photoSV];
-    }
     GQImageVideoScrollView *photoSV = (GQImageVideoScrollView *)[cell.contentView viewWithTag:100];
     
     photoSV.data = self.dataArray[indexPath.row];
@@ -60,8 +74,7 @@
 }
 
 #pragma mark - UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(nonnull UICollectionViewCell *)cell forItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     GQImageVideoScrollView *photoSV = (GQImageVideoScrollView *)[cell.contentView viewWithTag:100];
     
     [photoSV setZoomScale:1.0 animated:YES];
@@ -69,23 +82,21 @@
     [photoSV stopDisplay];
 }
 
-- (void)scrollToRowAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated
-{
-    [super scrollToRowAtIndexPath:indexPath atScrollPosition:scrollPosition animated:animated];
-    
+- (void)scrollToItemAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated {
+    [super scrollToItemAtIndexPath:indexPath atScrollPosition:scrollPosition animated:animated];
     //如果不存在currentIndexPath
     if (!currentIndexPath)
     {
         currentIndexPath = indexPath;
     }else if (currentIndexPath != indexPath)//如果currentIndexPath不等于indexPath则停止currentIndexPath的播放
     {
-        UITableViewCell *cell = [self cellForRowAtIndexPath:currentIndexPath];
+        UICollectionViewCell *cell = [self cellForItemAtIndexPath:currentIndexPath];
         GQImageVideoScrollView *photoSV = (GQImageVideoScrollView *)[cell.contentView viewWithTag:100];
         [photoSV stopDisplay];
         currentIndexPath = indexPath;
     }
     //播放当前indexPath
-    UITableViewCell *cell = [self cellForRowAtIndexPath:indexPath];
+    UICollectionViewCell *cell = [self cellForItemAtIndexPath:indexPath];
     GQImageVideoScrollView *photoSV = (GQImageVideoScrollView *)[cell.contentView viewWithTag:100];
     [photoSV beginDisplay];
 }

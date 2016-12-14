@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GQBaseTableView : UITableView<UITableViewDataSource,UITableViewDelegate>
+@interface GQBaseTableView : UICollectionView<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic, strong) NSArray *dataArray;
 

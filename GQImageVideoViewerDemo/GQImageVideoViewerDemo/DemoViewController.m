@@ -41,12 +41,12 @@
 
 - (void)showImageViewer:(id)sender{
     NSMutableArray *imageArray = [[NSMutableArray alloc] initWithCapacity:0];
-    for (int i = 1; i <11; i ++) {
-        NSString *fromPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%d.jpg",i] ofType:nil];
-        NSData *data = [NSData dataWithContentsOfFile:fromPath];
-        [imageArray addObject:@{GQIsImageURL:@(YES),
-                                GQURLString:[UIImage imageWithData:data]}];
-    }
+//    for (int i = 1; i <11; i ++) {
+//        NSString *fromPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%d.jpg",i] ofType:nil];
+//        NSData *data = [NSData dataWithContentsOfFile:fromPath];
+//        [imageArray addObject:@{GQIsImageURL:@(YES),
+//                                GQURLString:[UIImage imageWithData:data]}];
+//    }
     NSURL *url = [NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"];
     [imageArray addObjectsFromArray:@[@{GQIsImageURL:@(NO),
                                         GQURLString:url},
@@ -91,10 +91,10 @@
     //    链式调用
     [GQImageVideoViewer sharedInstance]
     .dataArrayChain(imageArray)
-    .usePageControlChain(NO)
-    .selectIndexChain(11)
+    .usePageControlChain(YES)
+    .selectIndexChain(2)
     .achieveSelectIndexChain(^(NSInteger selectIndex){
-        NSLog(@"%ld",selectIndex);
+        NSLog(@"%zd",selectIndex);
     })
     .launchDirectionChain(GQLaunchDirectionRight)
     .showViewChain(self.navigationController.view);

@@ -200,11 +200,8 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
 
 //屏幕旋转调整frame
 - (void)orientationChange{
-    [_tableView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [_tableView removeFromSuperview];
-    _tableView = nil;
-    [self initSubViews];
     self.frame = _superViewRect;
+    _tableView.frame = _superViewRect;
     [self updateInitialRect];
 }
 
@@ -213,15 +210,13 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
 {
     [self updateNumberView];
     if (!_tableView) {
-        _tableView = [[GQImageVideoTableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_superViewRect) ,CGRectGetHeight(_superViewRect)) style:UITableViewStylePlain];
+        _tableView = [[GQImageVideoTableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_superViewRect) ,CGRectGetHeight(_superViewRect)) collectionViewLayout:[UICollectionViewLayout new]];
         GQWeakify(self);
         _tableView.block = ^(NSInteger index){
             GQStrongify(self);
             self->_selectIndex = index;
             [self updatePageNumber];
         };
-        _tableView.rowHeight = CGRectGetWidth(_superViewRect);
-        _tableView.pagingEnabled  = YES;
     }
     [self insertSubview:_tableView atIndex:0];
     
@@ -295,7 +290,7 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
     //滚动到指定的单元格
     if (_tableView) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_selectIndex inSection:0];
-        [_tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        [_tableView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
     }
 }
 

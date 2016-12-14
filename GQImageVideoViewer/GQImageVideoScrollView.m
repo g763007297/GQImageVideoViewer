@@ -67,6 +67,14 @@
     return self;
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    if (self.zoomScale == 1) {
+        _videoView.frame = self.bounds;
+        _imageView.frame = self.bounds;
+    }
+}
+
 - (void)stopDisplay
 {
     [_videoView puase];

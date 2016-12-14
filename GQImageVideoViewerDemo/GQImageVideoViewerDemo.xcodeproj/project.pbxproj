@@ -351,6 +351,7 @@
 					B68DE09F1D86ACEE00FD8B84 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = KT3C6DHFPC;
+						ProvisioningStyle = Automatic;
 					};
 					B68DE0BB1D86ACEE00FD8B84 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -574,9 +575,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = KT3C6DHFPC;
 				INFOPLIST_FILE = GQImageVideoViewerDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = wp.GQImageVideoViewer;
+				PRODUCT_BUNDLE_IDENTIFIER = wp.GQImageVideoViewers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -586,9 +589,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = KT3C6DHFPC;
 				INFOPLIST_FILE = GQImageVideoViewerDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = wp.GQImageVideoViewer;
+				PRODUCT_BUNDLE_IDENTIFIER = wp.GQImageVideoViewers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

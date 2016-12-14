@@ -144,8 +144,13 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {
     [super willMoveToSuperview:newSuperview];
-    self.frame = newSuperview.bounds;
-    _playerLayer.frame = newSuperview.bounds;
+//    self.frame = newSuperview.bounds;
+//    _playerLayer.frame = newSuperview.bounds;
+}
+
+- (void)layoutSubviews {
+    self.frame = self.bounds;
+    _playerLayer.frame = self.bounds;
 }
 
 - (void)removeFromSuperview

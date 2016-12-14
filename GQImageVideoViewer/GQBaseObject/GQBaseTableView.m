@@ -8,11 +8,39 @@
 
 #import "GQBaseTableView.h"
 
+
+@interface GQReuseTabViewFlowLayout : UICollectionViewFlowLayout
+
+@end
+
+@implementation GQReuseTabViewFlowLayout
+- (void)prepareLayout
+{
+    [super prepareLayout];
+    self.minimumInteritemSpacing = 0;
+    self.minimumLineSpacing = 0;
+    if (self.collectionView.bounds.size.height) {
+        self.itemSize = self.collectionView.bounds.size;
+    }
+    self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    
+}
+
+@end
+
+@interface GQBaseTableView() {
+    GQReuseTabViewFlowLayout *layouts;
+}
+
+@end
+
 @implementation GQBaseTableView
 
-- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
-{
-    self = [super initWithFrame:frame style:style];
+- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
+    
+    layouts  = [[GQReuseTabViewFlowLayout alloc] init];
+    
+    self = [super initWithFrame:frame collectionViewLayout:layouts];
     if (self) {
         [self _initViews:frame];
     }
@@ -27,16 +55,10 @@
 
 - (void)_initViews:(CGRect)frame
 {
-    //逆时针旋转90度
-    self.transform = CGAffineTransformMakeRotation(-M_PI_2);
-    //旋转之后宽、高互换了,所以重新设置frame
-    self.frame = frame;
-    
     self.backgroundColor = [UIColor clearColor];
     
-    self.separatorStyle = UITableViewCellSeparatorStyleNone;
     //去掉垂直方向的滚动条
-    self.showsVerticalScrollIndicator = NO;
+    self.showsHorizontalScrollIndicator = NO;
     
     self.delegate = self;
     self.dataSource = self;
@@ -44,46 +66,29 @@
     //设置减速的方式， UIScrollViewDecelerationRateFast 为快速减速
     self.decelerationRate = UIScrollViewDecelerationRateFast;
     
+    self.contentInset = UIEdgeInsetsMake(0,0,0,0);
+    
     self.selectedInexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [layouts prepareLayout];
 }
 
 - (void)setDataArray:(NSArray *)dataArray
 {
     _dataArray = [dataArray copy];
-    [self reloadData];
+    [layouts prepareLayout];
 }
 
-- (void)setRowHeight:(CGFloat)rowHeight
-{
-    [super setRowHeight:rowHeight];
-    
-    //设置tableView滚动的起始位置、与终止位置
-    CGFloat edge = (rowHeight-self.rowHeight)/2;
-    self.contentInset = UIEdgeInsetsMake(edge,0,edge, 0);
-}
-
-#pragma mark - UITableView dataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return _dataArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identify = @"GQBaseCellIdentifier";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        //将cell.contentView顺时针旋转90度
-        cell.contentView.transform = CGAffineTransformMakeRotation(M_PI_2);
-        cell.backgroundColor = [UIColor clearColor];
-    }
-    
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
     return cell;
 }
 
@@ -111,11 +116,10 @@
 //将单元格滚动至中间位置
 - (void)scrollCellToCenter
 {
+    CGFloat edge = self.contentInset.right;
     
-    CGFloat edge = self.contentInset.top;
-    
-    float y = self.contentOffset.y + edge + self.rowHeight/2;
-    int row = y/self.rowHeight;
+    float y = self.contentOffset.x + edge + self.frame.size.width/2;
+    int row = y/self.frame.size.width;
     
     if (row >= _dataArray.count || row < 0) {
         return;
@@ -123,15 +127,15 @@
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
     
-    [self scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    [self scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
 }
 
 - (void)getPageIndex
 {
-    CGFloat edge = self.contentInset.top;
+    CGFloat edge = self.contentInset.right;
     
-    float y = self.contentOffset.y + edge + self.rowHeight/2;
-    int row = y/self.rowHeight;
+    float y = self.contentOffset.x + edge + self.frame.size.width/2;
+    int row = y/self.frame.size.width;
     
     if (row >= _dataArray.count || row < 0) {
         return;
