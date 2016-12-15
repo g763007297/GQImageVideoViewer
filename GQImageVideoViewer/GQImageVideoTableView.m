@@ -42,6 +42,7 @@
 @interface GQImageVideoTableView()
 {
     NSIndexPath *currentIndexPath;
+    BOOL isFirstLayout;
 }
 
 @end
@@ -70,6 +71,11 @@
     
     photoSV.row = indexPath.row;
     
+    if (isFirstLayout) {
+        isFirstLayout = NO;
+        [photoSV beginDisplay];
+    }
+    
     return cell;
 }
 
@@ -97,8 +103,13 @@
     }
     //播放当前indexPath
     UICollectionViewCell *cell = [self cellForItemAtIndexPath:indexPath];
-    GQImageVideoScrollView *photoSV = (GQImageVideoScrollView *)[cell.contentView viewWithTag:100];
-    [photoSV beginDisplay];
+    //如果指定的cell为空则说明是第一次展示，记录第一次
+    if (!cell) {
+        isFirstLayout = YES;
+    }else {
+        GQImageVideoScrollView *photoSV = (GQImageVideoScrollView *)[cell.contentView viewWithTag:100];
+        [photoSV beginDisplay];
+    }
 }
 
 @end
