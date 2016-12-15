@@ -32,10 +32,6 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor blackColor];
-        _player = [AVPlayer playerWithPlayerItem:[AVPlayerItem playerItemWithURL:[NSURL URLWithString:@""]]];
-        _playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
-        _playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
-        [self.layer addSublayer:_playerLayer];
     }
     return self;
 }
@@ -71,8 +67,8 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
     {
         //KVO
         [self setIsExitObserver:YES];
-        [_playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-        [_player addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+        [_playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
+        [_player addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
         [[NSNotificationCenter defaultCenter] addObserverForName:AVPlayerItemDidPlayToEndTimeNotification object:self.playerItem queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * note) {
             [_player seekToTime:kCMTimeZero];
             [_player play];
@@ -141,16 +137,9 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
 
 #pragma mark -- Object lifecycle
 
-- (void)willMoveToSuperview:(UIView *)newSuperview
-{
-    [super willMoveToSuperview:newSuperview];
-//    self.frame = newSuperview.bounds;
-//    _playerLayer.frame = newSuperview.bounds;
-}
-
 - (void)layoutSubviews {
     self.frame = self.bounds;
-    _playerLayer.frame = self.bounds;
+    self.playerLayer.frame = self.layer.bounds;
 }
 
 - (void)removeFromSuperview
@@ -162,6 +151,9 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
 - (void)dealloc
 {
     [self hideLoading];
+    [self.playerLayer removeFromSuperlayer];
+    [self.player.currentItem cancelPendingSeeks];
+    [self.player.currentItem.asset cancelLoading];
     [self.player replaceCurrentItemWithPlayerItem:nil];
     self.player = nil;
     self.playerLayer = nil;
@@ -172,6 +164,8 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
 - (void)puase
 {
     [self hideLoading];
+    [self.player.currentItem cancelPendingSeeks];
+    [self.player.currentItem.asset cancelLoading];
     [self.player seekToTime:kCMTimeZero];
     [self.player pause];
 }
@@ -201,17 +195,17 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
     
     [self showLoading];
     
-    //移除所有之前的KVO
-    [self removeObserver];
-    
     //重置_playerItem
-    _playerItem = [[AVPlayerItem alloc] initWithURL:_item];
+    self.playerItem = [[AVPlayerItem alloc] initWithURL:_item];
+    
+    self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
+    self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
+    self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+    self.playerLayer.frame = self.layer.bounds;
+    [self.layer insertSublayer:_playerLayer atIndex:0];
     
     //添加KVO
     [self addObserver];
-    
-    //替换player的当前播放item
-    [self.player replaceCurrentItemWithPlayerItem:_playerItem];
 }
 
 @end
