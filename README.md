@@ -101,7 +101,11 @@ github添加代码
 
 添加model，传图片和视频数组更加方便。
 
-(3) wait a moment
+(3) 0.0.3
+
+将tableView替换成collectionView，完美适配屏幕旋转，修复滑动不播放的bug。
+
+(4) wait a moment
 
 ##Support
 
