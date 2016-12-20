@@ -49,7 +49,7 @@
 //    }
     NSURL *url = [NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"];
     [imageArray addObjectsFromArray:@[@{GQIsImageURL:@(NO),
-                                        GQURLString:url},
+                                        GQURLString:[NSURL URLWithString:@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"]},
                                       @{GQIsImageURL:@(NO),
                                         GQURLString:[NSURL URLWithString:@"http://res.jiuyan.info/in_promo/20160627_meinan/video/tang.mp4"]},
                                       @{GQIsImageURL:@(NO),
