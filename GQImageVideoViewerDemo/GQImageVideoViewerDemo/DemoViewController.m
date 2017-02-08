@@ -41,12 +41,12 @@
 
 - (void)showImageViewer:(id)sender{
     NSMutableArray *imageArray = [[NSMutableArray alloc] initWithCapacity:0];
-//    for (int i = 1; i <11; i ++) {
-//        NSString *fromPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%d.jpg",i] ofType:nil];
-//        NSData *data = [NSData dataWithContentsOfFile:fromPath];
-//        [imageArray addObject:@{GQIsImageURL:@(YES),
-//                                GQURLString:[UIImage imageWithData:data]}];
-//    }
+    for (int i = 1; i <11; i ++) {
+        NSString *fromPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%d.jpg",i] ofType:nil];
+        NSData *data = [NSData dataWithContentsOfFile:fromPath];
+        [imageArray addObject:@{GQIsImageURL:@(YES),
+                                GQURLString:[UIImage imageWithData:data]}];
+    }
     NSURL *url = [NSURL URLWithString:@"http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4"];
     [imageArray addObjectsFromArray:@[@{GQIsImageURL:@(NO),
                                         GQURLString:[NSURL URLWithString:@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"]},
@@ -59,23 +59,23 @@
                                       @{GQIsImageURL:@(YES),
                                         GQURLString:@"http://img0.imgtn.bdimg.com/it/u=513437991,1334115219&fm=206&gp=0.jpg"},
                                       @{GQIsImageURL:@(YES),
-                                        GQURLString:@"http://h.hiphotos.baidu.com/image/pic/item/203fb80e7bec54e7f14e9ce2bf389b504ec26aa8.jpg"},
+                                        GQURLString:@"http://desk.fd.zol-img.com.cn/t_s960x600c5/g4/M00/0D/01/Cg-4y1ULoXCII6fEAAeQFx3fsKgAAXCmAPjugYAB5Av166.jpg"},
                                       @{GQIsImageURL:@(YES),
-                                        GQURLString:@"http://f.hiphotos.baidu.com/image/pic/item/a8014c086e061d9507500dd67ff40ad163d9cacd.jpg"},
+                                        GQURLString:@"http://desk.fd.zol-img.com.cn/t_s960x600c5/g5/M00/05/0F/ChMkJ1erCriIJ_opAAY8rSwt72wAAUU6gMmHKwABjzF444.jpgg"},
                                       @{GQIsImageURL:@(YES),
-                                        GQURLString:@"http://e.hiphotos.baidu.com/image/pic/item/8718367adab44aed02675424b71c8701a08bfbc1.jpg"},
+                                        GQURLString:@"http://desk.fd.zol-img.com.cn/t_s960x600c5/g5/M00/02/00/ChMkJ1bKxCSIRtwrAA2uHQvukJIAALHCALaz_UADa41063.jpg"},
                                       @{GQIsImageURL:@(YES),
-                                        GQURLString:@"http://e.hiphotos.baidu.com/image/pic/item/a9d3fd1f4134970a4c3910c891cad1c8a6865d8a.jpg"},
+                                        GQURLString:@"http://game2.1332255.com:80/group1/M00/00/0A/Cj2sWVhYtG6AOE4pAFfzq2lUi7E423.gif"},
                                       @{GQIsImageURL:@(YES),
-                                        GQURLString:@"http://c.hiphotos.baidu.com/image/pic/item/35a85edf8db1cb139badc135d854564e93584bd4.jpg"},
+                                        GQURLString:@"http://desk.fd.zol-img.com.cn/t_s960x600c5/g5/M00/07/0D/ChMkJlgaksOIEZcSAAYHVJbTdlwAAXcSwNDVmYABgds319.jpg"},
                                       @{GQIsImageURL:@(YES),
-                                        GQURLString:@"http://b.hiphotos.baidu.com/image/pic/item/d043ad4bd11373f0a3f892b9a10f4bfbfaed04d4.jpg"},
+                                        GQURLString:@"http://desk.fd.zol-img.com.cn/t_s960x600c5/g5/M00/02/03/ChMkJlbKxtqIF93BABJ066MJkLcAALHrQL_qNkAEnUD253.jpg"},
                                       @{GQIsImageURL:@(YES),
-                                        GQURLString:@"http://a.hiphotos.baidu.com/image/pic/item/7af40ad162d9f2d30f78d8c9acec8a136327ccaf.jpg"},
+                                        GQURLString:@"http://image101.360doc.com/DownloadImg/2016/11/0404/83709873_1.jpg"},
                                       @{GQIsImageURL:@(YES),
-                                        GQURLString:@"http://a.hiphotos.baidu.com/image/pic/item/c8177f3e6709c93d8087f2d19a3df8dcd100549b.jpg"},
+                                        GQURLString:@"http://image101.360doc.com/DownloadImg/2016/11/0404/83709873_8.jpg"},
                                       @{GQIsImageURL:@(YES),
-                                        GQURLString:@"http://g.hiphotos.baidu.com/image/pic/item/a8ec8a13632762d0a97e5899a5ec08fa513dc650.jpg"}
+                                        GQURLString:@"http://game2.1332255.com:80/group1/M00/00/0A/Cj2sWVhYtGeAQV15ACz1-KrKcsE448.gif"}
                                       ]];
     
 //    基本调用
