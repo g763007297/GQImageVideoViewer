@@ -29,6 +29,11 @@
 (1).GQURLString(链接地址，支持类型为NSUrl和NSString)
 (2).GQIsImageURL(是否为图片，如果是图片地址就传YES，如果是视频地址就传NO)。
 
+< 3 >如果需要自定义图片和视频显示画面，则需要分别继承基类:  （分别在两个覆盖的方法中写需要自定义的样式。）
+(1).自定义图片显示view:  继承 GQBaseImageView 类，然后在子类中覆盖方法: - (void)configureImageView;
+(2).自定义视频显示view:  继承 GQBaseVideoView 类，然后在子类中覆盖方法: - (void)configureVideoView;
+
+
 ```objc
 
 NSMutableArray *imageArray = [[NSMutableArray alloc] initWithCapacity:0];
@@ -105,7 +110,11 @@ github添加代码
 
 将tableView替换成collectionView，完美适配屏幕旋转，修复滑动不播放的bug。
 
-(4) wait a moment
+(4) 0.0.4
+
+添加自定义图片展示和视频展示功能
+
+(5) wait a moment
 
 ##Support
 
