@@ -15,10 +15,6 @@
 
 @property (nonatomic, strong) AVPlayerLayer *playerLayer;//播放视图载体
 
-@property (nonatomic, strong) AVPlayer *player;//播放器
-
-@property (nonatomic, strong) AVPlayerItem *playerItem;//当前播放条
-
 @end
 
 @implementation GQBaseVideoView
@@ -90,7 +86,7 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
         [_playerItem removeObserver:self forKeyPath:@"status"];
         [_player removeObserver:self forKeyPath:@"status"];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:self.playerItem];
-        self.playerItem = nil;
+        _playerItem = nil;
     }
 }
 
@@ -166,7 +162,7 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
     [self.player.currentItem cancelPendingSeeks];
     [self.player.currentItem.asset cancelLoading];
     [self.player replaceCurrentItemWithPlayerItem:nil];
-    self.player = nil;
+    _player = nil;
     self.playerLayer = nil;
 }
 
@@ -228,9 +224,9 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
     [self showLoading];
     
     //重置_playerItem
-    self.playerItem = [[AVPlayerItem alloc] initWithURL:_item];
+    _playerItem = [[AVPlayerItem alloc] initWithURL:_item];
     
-    self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
+    _player = [AVPlayer playerWithPlayerItem:self.playerItem];
     self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
     self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
     self.playerLayer.frame = self.layer.bounds;

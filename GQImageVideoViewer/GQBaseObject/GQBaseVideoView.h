@@ -23,6 +23,10 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) NSURL *item;
 
+@property (nonatomic, strong, readonly) AVPlayerItem *playerItem;
+
+@property (nonatomic, strong, readonly) AVPlayer *player;//播放器
+
 /**
  视频播放状态
  */
