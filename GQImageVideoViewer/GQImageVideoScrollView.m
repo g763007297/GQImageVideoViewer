@@ -74,7 +74,7 @@
 
 - (void)stopDisplay
 {
-    [_videoView puase];
+    [_videoView replace];
 }
 
 - (void)beginDisplay

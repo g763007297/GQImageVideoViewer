@@ -90,6 +90,7 @@
     
     //    链式调用
     [GQImageVideoViewer sharedInstance]
+    .videoViewClassNameChain(@"GQDemoVideoView")
     .dataArrayChain(imageArray)
     .usePageControlChain(YES)
     .selectIndexChain(2)

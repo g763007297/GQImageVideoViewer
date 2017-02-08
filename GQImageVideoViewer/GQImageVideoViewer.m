@@ -97,9 +97,9 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
 #pragma mark -- set method
 
 - (void)setImageViewClassName:(NSString *)imageViewClassName {
-    NSAssert(_dataArray, @"_imageViewClassName must be set earlier than _dataArray");
+    NSAssert(_dataArray == nil, @"_imageViewClassName must be set earlier than _dataArray");
     
-    NSAssert(_isVisible, @"GQImageVideoViewer can not be set _imageViewClassName in the display");
+    NSAssert(!_isVisible, @"GQImageVideoViewer can not be set _imageViewClassName in the display");
     
     if (_imageViewClassName) {
         _imageViewClassName = nil;
@@ -108,9 +108,9 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
 }
 
 - (void)setVideoViewClassName:(NSString *)videoViewClassName {
-    NSAssert(_dataArray, @"_imageViewClassName must be set earlier than _dataArray");
+    NSAssert(_dataArray == nil, @"_imageViewClassName must be set earlier than _dataArray");
     
-    NSAssert(_isVisible, @"GQImageVideoViewer can not be set _imageViewClassName in the display");
+    NSAssert(!_isVisible, @"GQImageVideoViewer can not be set _imageViewClassName in the display");
     
     if (_videoViewClassName) {
         _videoViewClassName = nil;
@@ -211,6 +211,9 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
                          [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
                          [self removeFromSuperview];
                          _tableView = nil;
+                         _dataArray = nil;
+                         _videoViewClassName = nil;
+                         _imageViewClassName = nil;
                          _isVisible = NO;
                      }];
 }

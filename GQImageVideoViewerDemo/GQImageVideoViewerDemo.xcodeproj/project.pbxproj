@@ -37,6 +37,7 @@
 		B68DE1191D86AD8200FD8B84 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B68DE10F1D86AD8200FD8B84 /* 8.jpg */; };
 		B68DE11A1D86AD8200FD8B84 /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B68DE1101D86AD8200FD8B84 /* 9.jpg */; };
 		B6CA1E531D8792360096A86E /* GQBaseImageVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B6CA1E521D8792360096A86E /* GQBaseImageVideoModel.m */; };
+		DFB1A1471E4B0F43005F13FD /* GQDemoVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB1A1461E4B0F43005F13FD /* GQDemoVideoView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,8 @@
 		B68DE1101D86AD8200FD8B84 /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
 		B6CA1E511D8792360096A86E /* GQBaseImageVideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQBaseImageVideoModel.h; sourceTree = "<group>"; };
 		B6CA1E521D8792360096A86E /* GQBaseImageVideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQBaseImageVideoModel.m; sourceTree = "<group>"; };
+		DFB1A1451E4B0F43005F13FD /* GQDemoVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GQDemoVideoView.h; sourceTree = "<group>"; };
+		DFB1A1461E4B0F43005F13FD /* GQDemoVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GQDemoVideoView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,8 @@
 				B68DE0A71D86ACEE00FD8B84 /* AppDelegate.m */,
 				B68DE1031D86AD4700FD8B84 /* DemoViewController.h */,
 				B68DE1041D86AD4700FD8B84 /* DemoViewController.m */,
+				DFB1A1451E4B0F43005F13FD /* GQDemoVideoView.h */,
+				DFB1A1461E4B0F43005F13FD /* GQDemoVideoView.m */,
 				B68DE0B21D86ACEE00FD8B84 /* Assets.xcassets */,
 				B68DE0B41D86ACEE00FD8B84 /* LaunchScreen.storyboard */,
 				B68DE0B71D86ACEE00FD8B84 /* Info.plist */,
@@ -438,6 +443,7 @@
 				B68DE0A81D86ACEE00FD8B84 /* AppDelegate.m in Sources */,
 				B6CA1E531D8792360096A86E /* GQBaseImageVideoModel.m in Sources */,
 				B68DE0FB1D86AD0900FD8B84 /* GQHttpRequestManager.m in Sources */,
+				DFB1A1471E4B0F43005F13FD /* GQDemoVideoView.m in Sources */,
 				B68DE0FD1D86AD0900FD8B84 /* GQImageCacheManager.m in Sources */,
 				B68DE0A51D86ACEE00FD8B84 /* main.m in Sources */,
 			);

@@ -33,6 +33,7 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
     if (self) {
         self.backgroundColor = [UIColor blackColor];
         [self configureVideoView];
+        _state = GQBaseVideoViewStateConfigure;
     }
     return self;
 }
@@ -76,7 +77,7 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
         [_player addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
         [[NSNotificationCenter defaultCenter] addObserverForName:AVPlayerItemDidPlayToEndTimeNotification object:self.playerItem queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * note) {
             [_player seekToTime:kCMTimeZero];
-            [_player play];
+            [self play];
         }];
     }
 }
@@ -103,38 +104,43 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
             {
                 //判断_player的status是否是准备播放
                 if (_player.status == AVPlayerStatusReadyToPlay) {
+                    _state = GQBaseVideoViewStateReadyToPlay;
                     [self hideLoading];
-                }
-                if (_player) {
-                    [_player play];
+                    [self play];
                 }
                 break;
             }
             case AVPlayerItemStatusFailed:
             {
+                _state = GQBaseVideoViewStateFail;
                 [self hideLoading];
                 break;
             }
             default:
+                _state = GQBaseVideoViewStateBuffer;
                 break;
         }
     }else if ([keyPath isEqualToString:@"status"]&&object == _player)
     {
         AVPlayerStatus stadus = _player.status;
         switch (stadus) {
-                //判断_playerItem的status是否为准备播放
+            //判断_playerItem的status是否为准备播放
             case AVPlayerStatusReadyToPlay:{
                 if (_playerItem.status == AVPlayerItemStatusReadyToPlay)
                 {
+                    _state = GQBaseVideoViewStateReadyToPlay;
                     [self hideLoading];
+                    [self play];
                 }
                 break;
             }
             case AVPlayerStatusFailed:{
+                _state = GQBaseVideoViewStateFail;
                 [self hideLoading];
                 break;
             }
             default:
+                _state = GQBaseVideoViewStateBuffer;
                 break;
         }
     }
@@ -169,10 +175,29 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
 - (void)puase
 {
     [self hideLoading];
+    _state = GQBaseVideoViewStatePuase;
+    [self.player pause];
+}
+
+- (void)play
+{
+    if (_player.status ==AVPlayerStatusReadyToPlay && _playerItem.status == AVPlayerItemStatusReadyToPlay) {
+        if (_player) {
+            [_player play];
+            _state = GQBaseVideoViewStatePlaying;
+            return;
+        }
+    }
+    _state = GQBaseVideoViewStateBuffer;
+}
+
+- (void)replace
+{
     [self.player.currentItem cancelPendingSeeks];
     [self.player.currentItem.asset cancelLoading];
     [self.player seekToTime:kCMTimeZero];
     [self.player pause];
+    _state = GQBaseVideoViewStateStop;
 }
 
 - (void)stop
@@ -180,19 +205,21 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
     [self hideLoading];
     [self.player replaceCurrentItemWithPlayerItem:nil];
     [self removeObserver];
+    _state = GQBaseVideoViewStateStop;
 }
 
 #pragma mark -- set get method
 
 - (void)setItem:(NSURL *)item
 {
+    _state = GQBaseVideoViewStateConfigure;
     //判断之前播放的url地址是否一致
     if ([_item.absoluteString isEqualToString:item.absoluteString]&&_player.currentItem)
     {
         //如果一致并且_playerItem的status是准备播放时就直接播放
         if (_playerItem.status == AVPlayerItemStatusReadyToPlay&&_player.status == AVPlayerStatusReadyToPlay)
         {
-            [_player play];
+            [self play];
             return;
         }
     }
