@@ -32,8 +32,13 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor blackColor];
+        [self configureVideoView];
     }
     return self;
+}
+
+- (void)configureVideoView {
+    
 }
 
 -(void)showLoading

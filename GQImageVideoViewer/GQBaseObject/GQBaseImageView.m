@@ -19,6 +19,18 @@
 
 @implementation GQBaseImageView
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self configureImageView];
+    }
+    return self;
+}
+
+- (void)configureImageView {
+    
+}
+
 - (void)dealloc
 {
     _download = nil;

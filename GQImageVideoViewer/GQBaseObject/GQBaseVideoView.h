@@ -14,6 +14,11 @@
 @property (nonatomic, strong) NSURL *item;
 
 /**
+ 自定义配置播放面板
+ */
+- (void)configureVideoView;
+
+/**
  *  暂停
  */
 - (void)puase;

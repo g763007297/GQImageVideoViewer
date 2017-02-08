@@ -11,7 +11,9 @@
 
 NSString *const GQURLString = @"GQURLString";
 NSString *const GQIsImageURL = @"GQIsImageURL";
-
+NSString *const GQVideoViewClassName = @"GQVideoViewClassName";
+NSString *const GQImageViewClassName = @"GQImageViewClassName";
+NSString *const GQNilClassName = @"nil";
 /**
  *  Given a scalar or struct value, wraps it in NSValue
  *  Based on EXPObjectify: https://github.com/specta/expecta

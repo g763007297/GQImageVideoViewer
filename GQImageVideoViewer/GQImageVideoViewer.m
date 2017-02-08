@@ -65,6 +65,8 @@ __strong static GQImageVideoViewer *imageVideoViewerManager;
     return self;
 }
 
+@synthesize videoViewClassNameChain = _videoViewClassNameChain;
+@synthesize imageViewClassNameChain = _imageViewClassNameChain;
 @synthesize usePageControlChain     = _usePageControlChain;
 @synthesize dataArrayChain          = _dataArrayChain;
 @synthesize selectIndexChain        = _selectIndexChain;
@@ -72,6 +74,8 @@ __strong static GQImageVideoViewer *imageVideoViewerManager;
 @synthesize launchDirectionChain    = _launchDirectionChain;
 @synthesize achieveSelectIndexChain = _achieveSelectIndexChain;
 
+GQChainObjectDefine(videoViewClassNameChain, VideoViewClassName, NSString *, GQStringClassChain);
+GQChainObjectDefine(imageViewClassNameChain, ImageViewClassName, NSString *, GQStringClassChain);
 GQChainObjectDefine(usePageControlChain, UsePageControl, BOOL, GQUsePageControlChain);
 GQChainObjectDefine(dataArrayChain, DataArray, NSArray *, GQDataArrayChain);
 GQChainObjectDefine(selectIndexChain, SelectIndex, NSInteger, GQSelectIndexChain);
@@ -91,6 +95,28 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
 }
 
 #pragma mark -- set method
+
+- (void)setImageViewClassName:(NSString *)imageViewClassName {
+    NSAssert(_dataArray, @"_imageViewClassName must be set earlier than _dataArray");
+    
+    NSAssert(_isVisible, @"GQImageVideoViewer can not be set _imageViewClassName in the display");
+    
+    if (_imageViewClassName) {
+        _imageViewClassName = nil;
+    }
+    _imageViewClassName = [imageViewClassName copy];
+}
+
+- (void)setVideoViewClassName:(NSString *)videoViewClassName {
+    NSAssert(_dataArray, @"_imageViewClassName must be set earlier than _dataArray");
+    
+    NSAssert(_isVisible, @"GQImageVideoViewer can not be set _imageViewClassName in the display");
+    
+    if (_videoViewClassName) {
+        _videoViewClassName = nil;
+    }
+    _videoViewClassName = [videoViewClassName copy];
+}
 
 - (void)setUsePageControl:(BOOL)usePageControl
 {
@@ -301,7 +327,7 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
         id imageObject = imageURlArray[i];
         //如果不是GQBaseImageVideoModel类和NSDictionary类，就默认为图片资源；
         if (![imageObject isKindOfClass:[GQBaseImageVideoModel class]]&&![imageObject isKindOfClass:[NSDictionary class]]) {
-            imageObject = [@{GQURLString:imageObject,GQIsImageURL:@(YES)} copy];
+            imageObject = [@{GQURLString:imageObject,GQIsImageURL:@(YES),GQVideoViewClassName:_videoViewClassName?:@"GQBaseVideoView",GQImageViewClassName:_imageViewClassName?:@"GQBaseImageView"} copy];
         }
         //如果为NSDictionary类，则改装成GQBaseImageVideoModel类
         if ([imageObject isKindOfClass:[NSDictionary class]]) {

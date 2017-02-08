@@ -16,10 +16,12 @@
 #import "GQImageVideoViewerConst.h"
 
 @interface GQImageVideoScrollView()<UIScrollViewDelegate>{
-    GQBaseImageView *_imageView;
-    GQBaseVideoView *_videoView;
-    NSURL           *currentUrl;
+    NSURL           *_currentUrl;
+    BOOL            _isAddSubView;
 }
+
+@property (nonatomic, strong) GQBaseImageView *imageView;
+@property (nonatomic, strong) GQBaseVideoView *videoView;
 
 @end
 
@@ -30,11 +32,9 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        _imageView = [[GQBaseImageView alloc] initWithFrame:self.bounds];
         self.backgroundColor = [UIColor clearColor];
-        //让图片等比例适应图片视图的尺寸
-        _imageView.contentMode = UIViewContentModeScaleAspectFit;
-        [self addSubview:_imageView];
+        
+        _isAddSubView = NO;
         
         //设置最大放大倍数
         self.maximumZoomScale = 3.0;
@@ -60,9 +60,6 @@
         
         //tap1、tap2两个手势同时响应时，则取消tap1手势
         [tap1 requireGestureRecognizerToFail:tap2];
-        
-        _videoView = [[GQBaseVideoView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        [self addSubview:_videoView];
     }
     return self;
 }
@@ -82,26 +79,31 @@
 
 - (void)beginDisplay
 {
-    if (currentUrl&&!_data.GQIsImageURL)
+    if (_currentUrl&&!_data.GQIsImageURL)
     {
-        [_videoView setItem:currentUrl];
+        [_videoView setItem:_currentUrl];
     }
 }
 
 - (void)setData:(GQBaseImageVideoModel *)data
 {
     _data = [data copy];
+    if (!_isAddSubView) {
+        [self addSubview:self.videoView];
+        [self addSubview:self.imageView];
+        _isAddSubView = YES;
+    }
     id urlString = _data.GQURLString;
     UIImage *image = nil;
-    currentUrl = nil;
+    _currentUrl = nil;
     if ([urlString isKindOfClass:[UIImage class]])
     {
         image = urlString;
     }else if ([urlString isKindOfClass:[NSString class]]||[urlString isKindOfClass:[NSURL class]])
     {
-        currentUrl = urlString;
+        _currentUrl = urlString;
         if ([urlString isKindOfClass:[NSString class]]) {
-            currentUrl = [NSURL URLWithString:urlString];
+            _currentUrl = [NSURL URLWithString:urlString];
         }
     }else if ([urlString isKindOfClass:[UIImageView class]])
     {
@@ -110,9 +112,9 @@
     }
     if (_data.GQIsImageURL) {
         [_videoView setHidden:YES];
-        if (currentUrl) {
+        if (_currentUrl) {
             [_imageView cancelCurrentImageRequest];
-            [_imageView loadImage:currentUrl placeHolder:_placeholderImage complete:nil];
+            [_imageView loadImage:_currentUrl placeHolder:_placeholderImage complete:nil];
         }else if(image){
             _imageView.image = image;
         }else{
@@ -157,6 +159,22 @@
     [_imageView cancelCurrentImageRequest];
     _imageView = nil;
     _videoView = nil;
+}
+
+- (GQBaseImageView *)imageView {
+    if (!_imageView) {
+        _imageView = [[NSClassFromString(_data.GQImageViewClassName) alloc] initWithFrame:self.bounds];
+        //让图片等比例适应图片视图的尺寸
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return _imageView;
+}
+
+- (GQBaseVideoView *)videoView {
+    if (!_videoView) {
+        _videoView = [[NSClassFromString(_data.GQVideoViewClassName) alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    }
+    return _videoView;
 }
 
 @end

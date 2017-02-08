@@ -22,6 +22,7 @@ typedef void (^GQAchieveIndexBlock)(NSInteger selectIndex);//获取当前图片�
 
 //链式调用block
 typedef GQImageVideoViewer * (^GQUsePageControlChain)(BOOL pageControl);
+typedef GQImageVideoViewer * (^GQStringClassChain) (NSString *className);
 typedef GQImageVideoViewer * (^GQDataArrayChain)(NSArray *dataArray);
 typedef GQImageVideoViewer * (^GQSelectIndexChain)(NSInteger selectIndex);
 typedef GQImageVideoViewer * (^GQLaunchDirectionChain)(GQLaunchDirection launchDirection);
@@ -31,6 +32,16 @@ typedef void (^GQShowViewChain)(UIView *showView);
 @interface GQImageVideoViewer : UIView
 
 #pragma mark -- 链式调用
+/**
+ 自定义视频class名称   type : NSSting
+ */
+@property (nonatomic, copy, readonly) GQStringClassChain videoViewClassNameChain;
+
+/**
+ 自定义图片浏览界面class名称   type : NSSting
+ */
+@property (nonatomic, copy, readonly) GQStringClassChain imageViewClassNameChain;
+
 /**
  *  显示PageControl传yes   type : BOOL
  */
@@ -70,14 +81,24 @@ typedef void (^GQShowViewChain)(UIView *showView);
 @property (nonatomic, assign) BOOL usePageControl;
 
 /**
+ 自定义视频class名称   必须继承GQBaseVideoView
+ */
+@property (nonatomic, strong) NSString *videoViewClassName;
+
+/**
+ 自定义图片浏览界面class名称 必须继承GQBaseImageView
+ */
+@property (nonatomic, strong) NSString *imageViewClassName;
+
+/**
  *  如果有网络图片则设置默认图片
  */
 @property (nonatomic, copy) UIImage *placeholderImage;
 
 /**
- *  图片数组
+ *  资源数组
  */
-@property (nonatomic, copy) NSArray *dataArray;//图片数组
+@property (nonatomic, copy) NSArray *dataArray;//资源数组
 
 /**
  *  获取当前选中的图片index
