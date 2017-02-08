@@ -26,13 +26,16 @@
 < 1 >图片数组中可以放单独的NSString,NSUrl,UIImage,UIImageView，如果是单独放这些类型，则默认为是图片类型。
 
 < 2 >如果需要放视频链接，则需要放字典或者GQBaseImageVideoModel类型，数组的key为以下两个：
+
 (1).GQURLString(链接地址，支持类型为NSUrl和NSString)
+
 (2).GQIsImageURL(是否为图片，如果是图片地址就传YES，如果是视频地址就传NO)。
 
 < 3 >如果需要自定义图片和视频显示画面，则需要分别继承基类:  （分别在两个覆盖的方法中写需要自定义的样式。）
-(1).自定义图片显示view:  继承 GQBaseImageView 类，然后在子类中覆盖方法: - (void)configureImageView;
-(2).自定义视频显示view:  继承 GQBaseVideoView 类，然后在子类中覆盖方法: - (void)configureVideoView;
 
+(1).自定义图片显示view:  继承 GQBaseImageView 类，然后在子类中覆盖方法: - (void)configureImageView;
+
+(2).自定义视频显示view:  继承 GQBaseVideoView 类，然后在子类中覆盖方法: - (void)configureVideoView;
 
 ```objc
 
