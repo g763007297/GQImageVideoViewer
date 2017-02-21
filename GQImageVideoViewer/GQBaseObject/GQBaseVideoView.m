@@ -71,7 +71,7 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
         [self setIsExitObserver:YES];
         [_playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
         [_player addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
-        [[NSNotificationCenter defaultCenter] addObserverForName:AVPlayerItemDidPlayToEndTimeNotification object:self.playerItem queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * note) {
+        [[NSNotificationCenter defaultCenter] addObserverForName:AVPlayerItemDidPlayToEndTimeNotification object:_playerItem queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * note) {
             [_player seekToTime:kCMTimeZero];
             [self play];
         }];
@@ -85,7 +85,7 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
         [self setIsExitObserver:NO];
         [_playerItem removeObserver:self forKeyPath:@"status"];
         [_player removeObserver:self forKeyPath:@"status"];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:self.playerItem];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:_playerItem];
         _playerItem = nil;
     }
 }
@@ -200,7 +200,6 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
 {
     [self hideLoading];
     [self.player replaceCurrentItemWithPlayerItem:nil];
-    [self removeObserver];
     _state = GQBaseVideoViewStateStop;
 }
 
@@ -226,7 +225,7 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
     //重置_playerItem
     _playerItem = [[AVPlayerItem alloc] initWithURL:_item];
     
-    _player = [AVPlayer playerWithPlayerItem:self.playerItem];
+    _player = [AVPlayer playerWithPlayerItem:_playerItem];
     self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
     self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
     self.playerLayer.frame = self.layer.bounds;
