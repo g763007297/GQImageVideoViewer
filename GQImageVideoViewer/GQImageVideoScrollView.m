@@ -11,6 +11,8 @@
 #import "GQBaseImageView.h"
 #import "GQBaseVideoView.h"
 
+#import "UIImageView+GQImageDownloader.h"
+
 #import "GQImageCacheManager.h"
 
 #import "GQImageVideoViewerConst.h"
@@ -113,8 +115,17 @@
     if (_data.GQIsImageURL) {
         [_videoView setHidden:YES];
         if (_currentUrl) {
-            [_imageView cancelCurrentImageRequest];
-            [_imageView loadImage:_currentUrl placeHolder:_placeholderImage complete:nil];
+            [_imageView showLoading];
+            GQWeakify(self);
+            [_imageView loadImage:_currentUrl
+                 requestClassName:nil
+                      placeHolder:_placeholderImage
+                         progress:nil
+                         complete:^(UIImage *image, NSError *error, NSURL *imageUrl) {
+                             GQStrongify(self);
+                             [self.imageView hideLoading];
+                             [self layoutSubviews];
+                         }];
         }else if(image){
             _imageView.image = image;
         }else{

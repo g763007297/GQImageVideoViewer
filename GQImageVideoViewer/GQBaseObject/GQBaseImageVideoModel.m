@@ -131,7 +131,7 @@ typedef void(^GQEnumerateSuper)(Class c , BOOL *stop);
 
 
 
--(id)initWithDataDic:(NSDictionary*)data
+- (instancetype)initWithDataDic:(NSDictionary*)data
 {
     if (self = [super init]) {
         [self setAttributes:data];
@@ -139,7 +139,7 @@ typedef void(^GQEnumerateSuper)(Class c , BOOL *stop);
     return self;
 }
 
-- (id)copyWithZone:(NSZone *)zone
+- (instancetype)copyWithZone:(NSZone *)zone
 {
     id object = [[self class] allocWithZone:zone];
     NSDictionary *attrMapDic = [[self class] attributeMapDictionary];
@@ -159,7 +159,7 @@ typedef void(^GQEnumerateSuper)(Class c , BOOL *stop);
     return object;
 }
 
-- (id)initWithCoder:(NSCoder *)decoder
+- (instancetype)initWithCoder:(NSCoder *)decoder
 {
     if( self = [super init] ){
         NSDictionary *attrMapDic = [[self class] attributeMapDictionary];

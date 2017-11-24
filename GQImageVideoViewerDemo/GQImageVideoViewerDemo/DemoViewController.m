@@ -9,7 +9,11 @@
 #import "DemoViewController.h"
 #import "GQImageVideoViewer.h"
 
-@interface DemoViewController ()
+#import <WebKit/WebKit.h>
+
+@interface DemoViewController ()<WKNavigationDelegate>
+
+@property (nonatomic, strong) WKWebView *webView;
 
 @end
 
@@ -37,6 +41,14 @@
     
     [button addTarget:self action:@selector(showImageViewer:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
+    
+    
+    [self.view addSubview:self.webView];
+    NSString *string = @"https://v.qq.com/iframe/player.html?vid=g0023ffgekb&tiny=0&auto=0";
+//    NSString *HTMLString = [NSString stringWithFormat:@"<iframe frameborder=\"0\" width=\"640\" height=\"498\" src=\"%@\" allowfullscreen></iframe>",string];
+//    [self.webView loadHTMLString:HTMLString baseURL:nil];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:string]];
+    [self.webView loadRequest:request];
 }
 
 - (void)showImageViewer:(id)sender{
@@ -93,12 +105,56 @@
     .videoViewClassNameChain(@"GQDemoVideoView")
     .dataArrayChain(imageArray)
     .usePageControlChain(YES)
-    .selectIndexChain(2)
+    .selectIndexChain(15)
     .achieveSelectIndexChain(^(NSInteger selectIndex){
         NSLog(@"%zd",selectIndex);
     })
     .launchDirectionChain(GQLaunchDirectionRight)
     .showViewChain(self.navigationController.view);
+}
+
+- (WKWebView *)webView {
+    if (!_webView) {
+        WKWebViewConfiguration *configure = [[WKWebViewConfiguration alloc] init];
+        configure.allowsPictureInPictureMediaPlayback = YES;
+        configure.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeAll;
+        configure.allowsAirPlayForMediaPlayback = YES;
+        _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 60, 320, 300) configuration:configure];
+        _webView.navigationDelegate = self;
+    }
+    return _webView;
+}
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+{
+    switch (navigationAction.navigationType) {
+        case WKNavigationTypeLinkActivated:
+            NSLog(@"WKNavigationTypeLinkActivated");
+            break;
+        case WKNavigationTypeFormSubmitted:
+            NSLog(@"WKNavigationTypeFormSubmitted");
+            break;
+        case WKNavigationTypeOther:
+        {
+            NSLog(@"WKNavigationTypeOther");
+            break;
+        }
+        case WKNavigationTypeBackForward:
+        {
+            NSLog(@"WKNavigationTypeBackForward");
+            break;
+        }
+        case WKNavigationTypeReload:
+            NSLog(@"WKNavigationTypeReload");
+            break;
+        case WKNavigationTypeFormResubmitted:
+            NSLog(@"WKNavigationTypeFormResubmitted");
+            break;
+        default:
+            break;
+    }
+    
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 @end

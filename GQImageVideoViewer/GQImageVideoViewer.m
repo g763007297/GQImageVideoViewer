@@ -212,6 +212,7 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
                          [self removeFromSuperview];
                          _tableView = nil;
                          _dataArray = nil;
+                         
                          _videoViewClassName = nil;
                          _imageViewClassName = nil;
                          _isVisible = NO;
@@ -220,7 +221,7 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
 
 #pragma mark -- privateMethod
 //屏幕旋转通知
-- (void)statusBarOrientationChange:(NSNotification *)noti{
+- (void)statusBarOrientationChange:(NSNotification *)noti {
     if (_isVisible) {
         _superViewRect = self.superview.bounds;
         [self orientationChange];
@@ -228,15 +229,14 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
 }
 
 //屏幕旋转调整frame
-- (void)orientationChange{
+- (void)orientationChange {
     self.frame = _superViewRect;
     _tableView.frame = _superViewRect;
     [self updateInitialRect];
 }
 
 //初始化子view
-- (void)initSubViews
-{
+- (void)initSubViews {
     [self updateNumberView];
     if (!_tableView) {
         _tableView = [[GQImageVideoTableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_superViewRect) ,CGRectGetHeight(_superViewRect)) collectionViewLayout:[UICollectionViewLayout new]];

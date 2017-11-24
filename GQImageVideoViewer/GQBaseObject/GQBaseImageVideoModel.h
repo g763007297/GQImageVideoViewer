@@ -37,6 +37,6 @@ extern NSString *const GQNilClassName;
  */
 @property (nonatomic, strong) NSString *GQImageViewClassName;
 
-- (id)initWithDataDic:(NSDictionary*)data;
+- (instancetype)initWithDataDic:(NSDictionary*)data;
 
 @end
