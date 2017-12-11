@@ -17,6 +17,7 @@ typedef enum {
 }GQLaunchDirection;
 
 typedef void (^GQAchieveIndexBlock)(NSInteger selectIndex);//获取当前图片的index的block
+typedef void (^GQDissMissAtIndexBlock)(NSInteger dissMissIndex);// 移除浏览器时的block
 
 @class GQImageVideoViewer;
 
@@ -27,6 +28,7 @@ typedef GQImageVideoViewer * (^GQDataArrayChain)(NSArray *dataArray);
 typedef GQImageVideoViewer * (^GQSelectIndexChain)(NSInteger selectIndex);
 typedef GQImageVideoViewer * (^GQLaunchDirectionChain)(GQLaunchDirection launchDirection);
 typedef GQImageVideoViewer * (^GQAchieveIndexChain)(GQAchieveIndexBlock selectIndexBlock);
+typedef GQImageVideoViewer * (^GQDissMissAtIndexChain)(GQDissMissAtIndexBlock dissMissAtIndexBlock);
 typedef void (^GQShowViewChain)(UIView *showView);
 
 @interface GQImageVideoViewer : UIView
@@ -72,6 +74,10 @@ typedef void (^GQShowViewChain)(UIView *showView);
  */
 @property (nonatomic, copy, readonly) GQAchieveIndexChain achieveSelectIndexChain;
 
+/**
+ *  移除浏览器时和移除时的index type:  GQDissMissWithIndexBlock
+ */
+@property (nonatomic, copy, readonly) GQDissMissAtIndexChain dissMissAtIndexChain;
 #pragma mark -- 普通调用
 
 /*
@@ -104,6 +110,11 @@ typedef void (^GQShowViewChain)(UIView *showView);
  *  获取当前选中的图片index
  */
 @property (nonatomic, copy) GQAchieveIndexBlock achieveSelectIndex;
+
+/**
+ *  移除浏览器时的index
+ */
+@property (copy, nonatomic) GQDissMissAtIndexBlock dissMissAtIndex;
 
 /**
  *  选中的图片索引

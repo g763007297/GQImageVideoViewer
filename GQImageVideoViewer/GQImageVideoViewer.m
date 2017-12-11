@@ -73,6 +73,7 @@ __strong static GQImageVideoViewer *imageVideoViewerManager;
 @synthesize showViewChain           = _showViewChain;
 @synthesize launchDirectionChain    = _launchDirectionChain;
 @synthesize achieveSelectIndexChain = _achieveSelectIndexChain;
+@synthesize dissMissAtIndexChain    = _dissMissAtIndexChain;
 
 GQChainObjectDefine(videoViewClassNameChain, VideoViewClassName, NSString *, GQStringClassChain);
 GQChainObjectDefine(imageViewClassNameChain, ImageViewClassName, NSString *, GQStringClassChain);
@@ -81,6 +82,7 @@ GQChainObjectDefine(dataArrayChain, DataArray, NSArray *, GQDataArrayChain);
 GQChainObjectDefine(selectIndexChain, SelectIndex, NSInteger, GQSelectIndexChain);
 GQChainObjectDefine(launchDirectionChain, LaucnDirection, GQLaunchDirection, GQLaunchDirectionChain);
 GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexBlock, GQAchieveIndexChain);
+GQChainObjectDefine(dissMissAtIndexChain, DissMissAtIndex, GQDissMissAtIndexBlock, GQDissMissAtIndexChain);
 
 - (GQShowViewChain)showViewChain
 {
@@ -203,6 +205,11 @@ GQChainObjectDefine(achieveSelectIndexChain, AchieveSelectIndex, GQAchieveIndexB
 //view消失
 - (void)dissMiss
 {
+    // view消失的回调
+    if (self.dissMissAtIndex) {
+        self.dissMissAtIndex(_selectIndex);
+    }
+    
     [UIView animateWithDuration:0.3
                      animations:^{
                          self.alpha = 0;
