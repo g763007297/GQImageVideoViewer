@@ -141,7 +141,7 @@
 //返回需要缩放的子视图
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-    return _imageView;
+    return self.data.GQIsImageURL ? _imageView : nil;
 }
 
 - (void)tapAction:(UITapGestureRecognizer *)tap
@@ -151,7 +151,7 @@
         [_imageView cancelCurrentImageRequest];
         [[GQImageVideoViewer sharedInstance] dissMiss];
     }
-    else if(tap.numberOfTapsRequired == 2)
+    else if(tap.numberOfTapsRequired == 2 && self.data.GQIsImageURL)
     {
         if (self.zoomScale > 1)
         {
