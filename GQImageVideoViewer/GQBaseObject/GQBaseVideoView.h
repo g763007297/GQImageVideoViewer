@@ -23,6 +23,11 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) NSURL *item;
 
+/**
+ 是否能循环播放,默认是YES，可以循环播放
+ */
+@property (assign, nonatomic) BOOL isRepeat;
+
 @property (nonatomic, strong, readonly) AVPlayerItem *playerItem;
 
 @property (nonatomic, strong, readonly) AVPlayer *player;//播放器
