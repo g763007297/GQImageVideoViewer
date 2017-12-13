@@ -30,6 +30,7 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
         self.backgroundColor = [UIColor blackColor];
         [self configureVideoView];
         _state = GQBaseVideoViewStateConfigure;
+        _isRepeat = YES;
     }
     return self;
 }
@@ -72,8 +73,10 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
         [_playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
         [_player addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial context:nil];
         [[NSNotificationCenter defaultCenter] addObserverForName:AVPlayerItemDidPlayToEndTimeNotification object:_playerItem queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * note) {
-            [_player seekToTime:kCMTimeZero];
-            [self play];
+//            [_player seekToTime:kCMTimeZero];
+//            [self play];
+            // 重复播放
+            [self repeatPlay];
         }];
     }
 }
@@ -142,6 +145,31 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
     }
 }
 
+
+/**
+ 释放播放器
+ */
+- (void)releasePlayer {
+    
+    [self.playerLayer removeFromSuperlayer];
+    [self.player.currentItem cancelPendingSeeks];
+    [self.player.currentItem.asset cancelLoading];
+    [self.player replaceCurrentItemWithPlayerItem:nil];
+    _player = nil;
+    self.playerLayer = nil;
+}
+
+/**
+ 重复播放
+ */
+- (void)repeatPlay {
+    
+    if (_isRepeat) {
+        [_player seekToTime:kCMTimeZero];
+        [self play];
+    }
+}
+
 #pragma mark -- Object lifecycle
 
 - (void)layoutSubviews {
@@ -157,13 +185,18 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
 
 - (void)dealloc
 {
+    
     [self hideLoading];
-    [self.playerLayer removeFromSuperlayer];
-    [self.player.currentItem cancelPendingSeeks];
-    [self.player.currentItem.asset cancelLoading];
-    [self.player replaceCurrentItemWithPlayerItem:nil];
-    _player = nil;
-    self.playerLayer = nil;
+    
+    // 释放播放器
+    [self releasePlayer];
+    
+//    [self.playerLayer removeFromSuperlayer];
+//    [self.player.currentItem cancelPendingSeeks];
+//    [self.player.currentItem.asset cancelLoading];
+//    [self.player replaceCurrentItemWithPlayerItem:nil];
+//    _player = nil;
+//    self.playerLayer = nil;
 }
 
 #pragma mark -- publicMethod
@@ -211,13 +244,23 @@ GQ_DYNAMIC_PROPERTY_BOOL(isExitObserver, setIsExitObserver);
     //判断之前播放的url地址是否一致
     if ([_item.absoluteString isEqualToString:item.absoluteString]&&_player.currentItem)
     {
-        //如果一致并且_playerItem的status是准备播放时就直接播放
-        if (_playerItem.status == AVPlayerItemStatusReadyToPlay&&_player.status == AVPlayerStatusReadyToPlay)
-        {
-            [self play];
-            return;
-        }
+//        //如果一致并且_playerItem的status是准备播放时就直接播放
+//        if (_playerItem.status == AVPlayerItemStatusReadyToPlay&&_player.status == AVPlayerStatusReadyToPlay)
+//        {
+//            [self play];
+//            return;
+//        }
+        
+        // 如果item一致就直接跳出，可以直接播放
+        return;
     }
+    
+    // 移除观察者
+    [self removeObserver];
+    // 释放播放器，用来解决重用导致的上次视频画面残留
+    [self releasePlayer];
+    
+    // 设置新的播放器和playerItem
     _item = [item copy];
     
     [self showLoading];

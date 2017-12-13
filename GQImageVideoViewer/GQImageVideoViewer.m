@@ -337,10 +337,16 @@ GQChainObjectDefine(dissMissAtIndexChain, DissMissAtIndex, GQDissMissAtIndexBloc
         id imageObject = imageURlArray[i];
         //如果不是GQBaseImageVideoModel类和NSDictionary类，就默认为图片资源；
         if (![imageObject isKindOfClass:[GQBaseImageVideoModel class]]&&![imageObject isKindOfClass:[NSDictionary class]]) {
-            imageObject = [@{GQURLString:imageObject,GQIsImageURL:@(YES),GQVideoViewClassName:_videoViewClassName?:@"GQBaseVideoView",GQImageViewClassName:_imageViewClassName?:@"GQBaseImageView"} copy];
+            imageObject = [@{GQURLString:imageObject,GQIsImageURL:@(YES),GQIsRepeat:@(YES),GQVideoViewClassName:_videoViewClassName?:@"GQBaseVideoView",GQImageViewClassName:_imageViewClassName?:@"GQBaseImageView"} copy];
         }else if ([imageObject isKindOfClass:[NSDictionary class]]) {
             NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:imageObject];
             [dictionary addEntriesFromDictionary:@{GQVideoViewClassName:_videoViewClassName?:@"GQBaseVideoView",GQImageViewClassName:_imageViewClassName?:@"GQBaseImageView"}];
+            // 补充视频是否需要重复播放参数，默认YES
+            if (![[dictionary allKeys] containsObject:GQIsRepeat]) {
+                
+                [dictionary addEntriesFromDictionary:@{GQIsRepeat:@(YES)}];
+            }
+            
             imageObject = dictionary;
         }
         //如果为NSDictionary类，则改装成GQBaseImageVideoModel类

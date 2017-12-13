@@ -79,12 +79,31 @@
     [_videoView replace];
 }
 
+/**
+ 开始播放
+ */
 - (void)beginDisplay
 {
     if (_currentUrl&&!_data.GQIsImageURL)
     {
-        [_videoView setItem:_currentUrl];
+//        [_videoView setItem:_currentUrl];
+        [_videoView play];
     }
+}
+
+
+/**
+ 准备视频展示的数据
+ */
+- (void)prepareVideoData {
+    if(_videoView) {
+        
+        // 设置需要展示的数据
+        [_videoView setItem:_currentUrl];
+        // 设置是否需要循环播放
+        [_videoView setIsRepeat:_data.GQIsRepeat];
+    }
+    
 }
 
 - (void)setData:(GQBaseImageVideoModel *)data
@@ -134,6 +153,8 @@
     }else{
         _imageView.image = nil;
         [_videoView setHidden:NO];
+        
+        [self prepareVideoData]; // 准备视频数据
     }
 }
 

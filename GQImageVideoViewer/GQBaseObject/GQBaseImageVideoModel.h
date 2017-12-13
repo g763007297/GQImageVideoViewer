@@ -11,6 +11,7 @@
 
 extern NSString *const GQURLString;
 extern NSString *const GQIsImageURL;
+extern NSString *const GQIsRepeat;
 extern NSString *const GQVideoViewClassName;
 extern NSString *const GQImageViewClassName;
 extern NSString *const GQNilClassName;
@@ -26,6 +27,11 @@ extern NSString *const GQNilClassName;
  *  是否为图片，如果是图片地址就传YES，如果是视频地址就传NO
  */
 @property (nonatomic, assign) BOOL GQIsImageURL;
+
+/**
+ 视频是否循环播放,只对视频有效,可以不传，默认为YES
+ */
+@property (assign, nonatomic) BOOL GQIsRepeat;
 
 /**
  自定义视频播放界面class名称 必须继承GQBaseVideoView

@@ -11,6 +11,7 @@
 
 NSString *const GQURLString = @"GQURLString";
 NSString *const GQIsImageURL = @"GQIsImageURL";
+NSString *const GQIsRepeat = @"GQIsRepeat";
 NSString *const GQVideoViewClassName = @"GQVideoViewClassName";
 NSString *const GQImageViewClassName = @"GQImageViewClassName";
 NSString *const GQNilClassName = @"nil";
