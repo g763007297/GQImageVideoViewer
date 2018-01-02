@@ -16,13 +16,20 @@ typedef enum {
     GQLaunchDirectionRight      //从右往左推出
 }GQLaunchDirection;
 
+typedef enum {
+    GQShowIndexTypeNone = 1,        // 不显示下标
+    GQShowIndexTypePageControl,     // 以pageControl的形式显示
+    GQShowIndexTypeLabel            // 以文字样式显示
+    
+}GQShowIndexType;
+
 typedef void (^GQAchieveIndexBlock)(NSInteger selectIndex);//获取当前图片的index的block
 typedef void (^GQDissMissAtIndexBlock)(NSInteger dissMissIndex);// 移除浏览器时的block
 
 @class GQImageVideoViewer;
 
 //链式调用block
-typedef GQImageVideoViewer * (^GQUsePageControlChain)(BOOL pageControl);
+typedef GQImageVideoViewer * (^GQShowIndexTypeChain)(GQShowIndexType showIndexType);
 typedef GQImageVideoViewer * (^GQStringClassChain) (NSString *className);
 typedef GQImageVideoViewer * (^GQDataArrayChain)(NSArray *dataArray);
 typedef GQImageVideoViewer * (^GQSelectIndexChain)(NSInteger selectIndex);
@@ -47,7 +54,7 @@ typedef void (^GQShowViewChain)(UIView *showView);
 /**
  *  显示PageControl传yes   type : BOOL
  */
-@property (nonatomic, copy, readonly) GQUsePageControlChain usePageControlChain;
+@property (nonatomic, copy, readonly) GQShowIndexTypeChain showIndexTypeChain;
 
 /**
  *  图片数组    type : NSArray *
@@ -84,7 +91,7 @@ typedef void (^GQShowViewChain)(UIView *showView);
  *  显示PageControl传yes   默认 : yes
  *  显示label就传no
  */
-@property (nonatomic, assign) BOOL usePageControl;
+@property (nonatomic, assign) GQShowIndexType showIndexType;
 
 /**
  自定义视频class名称   必须继承GQBaseVideoView

@@ -60,14 +60,14 @@ __strong static GQImageVideoViewer *imageVideoViewerManager;
         self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
         [self setClipsToBounds:YES];
         self.laucnDirection = GQLaunchDirectionBottom;
-        self.usePageControl = YES;
+        self.showIndexType = GQShowIndexTypeLabel;
     }
     return self;
 }
 
 @synthesize videoViewClassNameChain = _videoViewClassNameChain;
 @synthesize imageViewClassNameChain = _imageViewClassNameChain;
-@synthesize usePageControlChain     = _usePageControlChain;
+@synthesize showIndexTypeChain     = _showIndexTypeChain;
 @synthesize dataArrayChain          = _dataArrayChain;
 @synthesize selectIndexChain        = _selectIndexChain;
 @synthesize showViewChain           = _showViewChain;
@@ -77,7 +77,7 @@ __strong static GQImageVideoViewer *imageVideoViewerManager;
 
 GQChainObjectDefine(videoViewClassNameChain, VideoViewClassName, NSString *, GQStringClassChain);
 GQChainObjectDefine(imageViewClassNameChain, ImageViewClassName, NSString *, GQStringClassChain);
-GQChainObjectDefine(usePageControlChain, UsePageControl, BOOL, GQUsePageControlChain);
+GQChainObjectDefine(showIndexTypeChain, ShowIndexType, GQShowIndexType, GQShowIndexTypeChain);
 GQChainObjectDefine(dataArrayChain, DataArray, NSArray *, GQDataArrayChain);
 GQChainObjectDefine(selectIndexChain, SelectIndex, NSInteger, GQSelectIndexChain);
 GQChainObjectDefine(launchDirectionChain, LaucnDirection, GQLaunchDirection, GQLaunchDirectionChain);
@@ -120,9 +120,8 @@ GQChainObjectDefine(dissMissAtIndexChain, DissMissAtIndex, GQDissMissAtIndexBloc
     _videoViewClassName = [videoViewClassName copy];
 }
 
-- (void)setUsePageControl:(BOOL)usePageControl
-{
-    _usePageControl = usePageControl;
+- (void)setShowIndexType:(GQShowIndexType)showIndexType {
+    _showIndexType = showIndexType;
     [self updateNumberView];
 }
 
@@ -291,20 +290,33 @@ GQChainObjectDefine(dissMissAtIndexChain, DissMissAtIndex, GQDissMissAtIndexBloc
 {
     [[self viewWithTag:pageNumberTag] removeFromSuperview];
     
-    if (_usePageControl) {
-        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(_superViewRect)-10, 0, 10)];
-        _pageControl.numberOfPages = _dataArray.count;
-        _pageControl.tag = pageNumberTag;
-        _pageControl.currentPage = _selectIndex;
-        [self insertSubview:_pageControl atIndex:1];
-    }else{
-        _pageLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(_superViewRect)/2 - 30, CGRectGetHeight(_superViewRect) - 20, 60, 15)];
-        _pageLabel.textAlignment = NSTextAlignmentCenter;
-        _pageLabel.tag = pageNumberTag;
-        _pageLabel.text = [NSString stringWithFormat:@"%zd/%zd",(_selectIndex+1),_dataArray.count];
-        _pageLabel.textColor = [UIColor whiteColor];
-        [self insertSubview:_pageLabel atIndex:1];
+    switch (_showIndexType) {
+        case GQShowIndexTypeNone:
+        {
+            // 不显示下标
+        }
+            break;
+        case GQShowIndexTypePageControl:
+        {
+            _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(_superViewRect)- (10 + GQTabSafeHeight), 0, 10)];
+            _pageControl.numberOfPages = _dataArray.count;
+            _pageControl.tag = pageNumberTag;
+            _pageControl.currentPage = _selectIndex;
+            [self insertSubview:_pageControl atIndex:1];
+        }
+            break;
+        case GQShowIndexTypeLabel:
+        default:{
+            _pageLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(_superViewRect)/2 - 30, CGRectGetHeight(_superViewRect) - (20 + GQTabSafeHeight), 60, 15)];
+            _pageLabel.textAlignment = NSTextAlignmentCenter;
+            _pageLabel.tag = pageNumberTag;
+            _pageLabel.text = [NSString stringWithFormat:@"%zd/%zd",(_selectIndex+1),_dataArray.count];
+            _pageLabel.textColor = [UIColor whiteColor];
+            [self insertSubview:_pageLabel atIndex:1];
+        }
+            break;
     }
+    
     [self updatePageNumber];
 }
 
@@ -314,10 +326,24 @@ GQChainObjectDefine(dissMissAtIndexChain, DissMissAtIndex, GQDissMissAtIndexBloc
     if (self.achieveSelectIndex) {
         self.achieveSelectIndex(_selectIndex);
     }
-    if (_usePageControl) {
-        _pageControl.currentPage = self.selectIndex;
-    }else{
-        _pageLabel.text = [NSString stringWithFormat:@"%zd/%zd",(_selectIndex+1),_dataArray.count];
+    switch (_showIndexType) {
+        case GQShowIndexTypeNone:
+        {
+            // 不设置下标
+        }
+            break;
+        case GQShowIndexTypePageControl:
+        {
+            _pageControl.currentPage = self.selectIndex;
+            
+        }
+            break;
+        case GQShowIndexTypeLabel:
+        default:{
+            _pageLabel.text = [NSString stringWithFormat:@"%zd/%zd",(_selectIndex+1),_dataArray.count];
+            
+        }
+            break;
     }
 }
 
