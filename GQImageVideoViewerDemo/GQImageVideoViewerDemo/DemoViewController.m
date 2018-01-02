@@ -107,7 +107,7 @@
     [GQImageVideoViewer sharedInstance]
     .videoViewClassNameChain(@"GQDemoVideoView")
     .dataArrayChain(imageArray)
-    .usePageControlChain(YES)
+    .showIndexTypeChain(GQShowIndexTypeLabel)
     .selectIndexChain(15)
     .achieveSelectIndexChain(^(NSInteger selectIndex){
         NSLog(@"%zd",selectIndex);

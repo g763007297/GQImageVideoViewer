@@ -72,5 +72,9 @@ static _object_name_ *z##_shared_obj_name_ = nil;                           \
 #define GQStrongify(object) __typeof__(object) object = weak##_##object
 #endif
 
+// iPhone X 适配
+#define GQIsIPhoneX ([UIScreen mainScreen].bounds.size.height == 812)
+
+#define GQTabSafeHeight ((GQIsIPhoneX) ? (34.0) : (0.0))
 
 #endif /* GQImageVideoViewerConst_h */
